@@ -1,6 +1,6 @@
 # KBA Reasoner
 
-NCATS Translator Reasoner API wrapper for the Knowledge Beacon Aggregator.
+Application to create a proxy web service compliant with the [NCATS Translator Reasoner API](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI) which wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator). 
 
 ## Running the Application
 

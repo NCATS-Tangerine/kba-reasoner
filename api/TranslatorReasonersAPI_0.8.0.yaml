@@ -1,18 +1,18 @@
 swagger: "2.0"
 info:
-  description: "OpenAPI for NCATS Biomedical Translator Reasoners"
+  description: "NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API"
   version: "0.8.0"
-  title: "OpenAPI for NCATS Biomedical Translator Reasoners"
+  title: "NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator"
   contact:
-    email: "edeutsch@systemsbiology.org"
+    email: "richard@starinformatics.com"
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "rtx.ncats.io"
-basePath: "/api/rtx/v1"
+host: "kba-reasoner.ncats.io"
+basePath: "/"
 externalDocs:
-  description: "Documentation for the NCATS Biomedical Translator Reasoners web services"
-  url: "https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI"
+  description: "Documentation for the NCATS Biomedical Translator Reasoner-to-KBA API"
+  url: "https://github.com/NCATS-Tangerine/kba-reasoner"
 tags:
 - name: "translate"
   description: "Translate natural language question into a standardized query"
