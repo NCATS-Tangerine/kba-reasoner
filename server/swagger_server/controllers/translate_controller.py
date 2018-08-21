@@ -1,21 +1,21 @@
 import connexion
-from swagger_server.bio.knowledge.server.model.query import Query
-from swagger_server.bio.knowledge.server.model.question import Question
-from datetime import date, datetime
-from typing import List, Dict
-from six import iteritems
-from ..util import deserialize_date, deserialize_datetime
+import six
+
+from swagger_server.bio.knowledge.server.model.query import Query  # noqa: E501
+from swagger_server.bio.knowledge.server.model.question import Question  # noqa: E501
+from swagger_server import util
 
 
-def translate(body):
-    """
-    Translate natural language question into a standardized query
-    
+def translate(body):  # noqa: E501
+    """Translate natural language question into a standardized query
+
+     # noqa: E501
+
     :param body: Question object that needs to be translated
     :type body: dict | bytes
 
     :rtype: List[Query]
     """
     if connexion.request.is_json:
-        body = Question.from_dict(connexion.request.get_json())
+        body = Question.from_dict(connexion.request.get_json())  # noqa: E501
     return 'do some magic!'

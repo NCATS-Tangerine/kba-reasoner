@@ -1,6 +1,6 @@
 # swagger_client.MetadataApi
 
-All URIs are relative to *https://kba.ncats.io/*
+All URIs are relative to *https://kba.ncats.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -18,9 +18,9 @@ Method | HTTP request | Description
 
 Get a list of all of the knowledge beacons that the aggregator can query 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -29,7 +29,7 @@ from pprint import pprint
 # create an instance of the API class
 api_instance = swagger_client.MetadataApi()
 
-try: 
+try:
     api_response = api_instance.get_beacons()
     pprint(api_response)
 except ApiException as e:
@@ -61,9 +61,9 @@ No authorization required
 
 Get a list of semantic categories and number of instances in each  available knowledge beacon, including associated beacon-specific metadata 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -73,7 +73,7 @@ from pprint import pprint
 api_instance = swagger_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain categories returned  (optional)
 
-try: 
+try:
     api_response = api_instance.get_concept_categories(beacons=beacons)
     pprint(api_response)
 except ApiException as e:
@@ -108,9 +108,9 @@ No authorization required
 
 Get a log of the system errors associated with a specified query 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -120,7 +120,7 @@ from pprint import pprint
 api_instance = swagger_client.MetadataApi()
 query_id = 'query_id_example' # str | query identifier returned from a POSTed query 
 
-try: 
+try:
     api_response = api_instance.get_errors(query_id)
     pprint(api_response)
 except ApiException as e:
@@ -155,9 +155,9 @@ No authorization required
 
 Get a high level knowledge map of the all the beacons specified by triplets of subject concept category, relationship predicate and concept object category 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -167,7 +167,7 @@ from pprint import pprint
 api_instance = swagger_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons constraining knowledge maps returned   (optional)
 
-try: 
+try:
     api_response = api_instance.get_knowledge_map(beacons=beacons)
     pprint(api_response)
 except ApiException as e:
@@ -202,9 +202,9 @@ No authorization required
 
 Get a list of predicates used in statements issued by the knowledge source 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -214,7 +214,7 @@ from pprint import pprint
 api_instance = swagger_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain predicates returned  (optional)
 
-try: 
+try:
     api_response = api_instance.get_predicates(beacons=beacons)
     pprint(api_response)
 except ApiException as e:

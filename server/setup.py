@@ -18,16 +18,18 @@ REQUIRES = ["connexion"]
 setup(
     name=NAME,
     version=VERSION,
-    description="OpenAPI for NCATS Biomedical Translator Reasoners",
-    author_email="edeutsch@systemsbiology.org",
+    description="NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator",
+    author_email="richard@starinformatics.com",
     url="",
-    keywords=["Swagger", "OpenAPI for NCATS Biomedical Translator Reasoners"],
+    keywords=["Swagger", "NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['swagger/swagger.yaml']},
     include_package_data=True,
+    entry_points={
+        'console_scripts': ['swagger_server=swagger_server.__main__:main']},
     long_description="""\
-    OpenAPI for NCATS Biomedical Translator Reasoners
+    NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API
     """
 )
 

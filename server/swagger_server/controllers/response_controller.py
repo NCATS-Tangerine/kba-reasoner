@@ -1,16 +1,16 @@
 import connexion
-from swagger_server.bio.knowledge.server.model.response import Response
-from swagger_server.bio.knowledge.server.model.response_feedback import ResponseFeedback
-from datetime import date, datetime
-from typing import List, Dict
-from six import iteritems
-from ..util import deserialize_date, deserialize_datetime
+import six
+
+from swagger_server.bio.knowledge.server.model.response import Response  # noqa: E501
+from swagger_server.bio.knowledge.server.model.response_feedback import ResponseFeedback  # noqa: E501
+from swagger_server import util
 
 
-def get_response(response_id):
-    """
-    Request stored responses and results
-    
+def get_response(response_id):  # noqa: E501
+    """Request stored responses and results
+
+     # noqa: E501
+
     :param response_id: Integer identifier of the response to return
     :type response_id: int
 
@@ -19,10 +19,11 @@ def get_response(response_id):
     return 'do some magic!'
 
 
-def get_response_feedback(response_id):
-    """
-    Request stored feedback for this response
-    
+def get_response_feedback(response_id):  # noqa: E501
+    """Request stored feedback for this response
+
+     # noqa: E501
+
     :param response_id: Integer identifier of the response to return
     :type response_id: int
 

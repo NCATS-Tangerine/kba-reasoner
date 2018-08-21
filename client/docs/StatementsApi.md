@@ -1,6 +1,6 @@
 # swagger_client.StatementsApi
 
-All URIs are relative to *https://kba.ncats.io/*
+All URIs are relative to *https://kba.ncats.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -17,9 +17,9 @@ Method | HTTP request | Description
 
 Retrieves a details relating to a specified concept-relationship statement include 'is_defined_by and 'provided_by' provenance; extended edge properties exported as tag = value; and any associated annotations (publications, etc.)  cited as evidence for the given statement. 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -32,7 +32,7 @@ keywords = ['keywords_example'] # list[str] | an array of keywords or substrings
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of statement.evidence array entries. Defaults to 1.  (optional)
 page_size = 56 # int | number of cited references per page to be returned in a paged set of statement.evidence array entries. Defaults to '10'.  (optional)
 
-try: 
+try:
     api_response = api_instance.get_statement_details(statement_id, keywords=keywords, page_number=page_number, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
@@ -70,9 +70,9 @@ No authorization required
 
 Given a specification [CURIE-encoded](https://www.w3.org/TR/curie/) a 'source' clique identifier for a set of exactly matching concepts,  retrieves a paged list of concept-relations where either the subject or object concept matches the 'source' clique identifier.  Optionally, a 'target' clique identifier may also be given, in which case the 'target' clique identifier should match the concept clique opposing the 'source', that is, if the 'source' matches a subject, then the  'target' should match the object of a given statement (or vice versa). 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -85,7 +85,7 @@ beacons = [56] # list[int] | subset of aggregator indices of beacons whose state
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of query results. Defaults to '1'.  (optional)
 page_size = 56 # int | number of concepts per page to be returned in a paged set of query results. Defaults to '10'.  (optional)
 
-try: 
+try:
     api_response = api_instance.get_statements_query(query_id, beacons=beacons, page_number=page_number, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
@@ -123,9 +123,9 @@ No authorization required
 
 Retrieves the status of a given query about the statements in the system 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -136,7 +136,7 @@ api_instance = swagger_client.StatementsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of statements  query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose status is being polled (if omitted, then the status of all beacons from the query are returned)  (optional)
 
-try: 
+try:
     api_response = api_instance.get_statements_query_status(query_id, beacons=beacons)
     pprint(api_response)
 except ApiException as e:
@@ -172,9 +172,9 @@ No authorization required
 
 Posts a query to retrieve concept-relations where either the subject or object concept matches a [CURIE-encoded 'source'](https://www.w3.org/TR/curie/) clique identifier designating a set of exactly matching concepts. A 'target' clique identifier may optionally be given, in which case the 'target' clique identifier should match the concept clique opposing the 'source', that is, if the 'source' matches a subject, then the  'target' should match the object of a given statement (or vice versa). 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -189,7 +189,7 @@ keywords = ['keywords_example'] # list[str] | an array of keywords or substrings
 categories = ['categories_example'] # list[str] | a subset (array) of identifiers of concept categories to which to constrain 'target' concepts associated with the given 'source' concept ((see [Biolink Model](https://biolink.github.io/biolink-model) for the full list of categories).  (optional)
 beacons = [56] # list[int] | set of aggregator indices of beacons to be used as knowledge sources for the query  (optional)
 
-try: 
+try:
     api_response = api_instance.post_statements_query(source, relations=relations, target=target, keywords=keywords, categories=categories, beacons=beacons)
     pprint(api_response)
 except ApiException as e:

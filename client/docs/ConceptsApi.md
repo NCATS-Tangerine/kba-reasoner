@@ -1,6 +1,6 @@
 # swagger_client.ConceptsApi
 
-All URIs are relative to *https://kba.ncats.io/*
+All URIs are relative to *https://kba.ncats.io*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -20,9 +20,9 @@ Method | HTTP request | Description
 
 Retrieves a list of concept cliques based on  'data ready' from a previously /cliques posted query parameter submission 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -32,7 +32,7 @@ from pprint import pprint
 api_instance = swagger_client.ConceptsApi()
 query_id = 'query_id_example' # str | the query identifier of a concepts query previously posted by the /cliques endpoint
 
-try: 
+try:
     api_response = api_instance.get_cliques(query_id)
     pprint(api_response)
 except ApiException as e:
@@ -67,9 +67,9 @@ No authorization required
 
 Retrieves the status of a given query about the cliques in the system 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -79,7 +79,7 @@ from pprint import pprint
 api_instance = swagger_client.ConceptsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of clique query parameters.
 
-try: 
+try:
     api_response = api_instance.get_cliques_query_status(query_id)
     pprint(api_response)
 except ApiException as e:
@@ -114,9 +114,9 @@ No authorization required
 
 Retrieves details for a specified clique of equivalent concepts in the system,  as specified by a (url-encoded) CURIE identifier of a clique known to the aggregator 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -127,7 +127,7 @@ api_instance = swagger_client.ConceptsApi()
 clique_id = 'clique_id_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier, as returned  by any other endpoint of the beacon aggregator API, of an exactly matching  concept clique of interest.
 beacons = [56] # list[int] | set of aggregator indices of beacons to be used as knowledge sources for the query  (optional)
 
-try: 
+try:
     api_response = api_instance.get_concept_details(clique_id, beacons=beacons)
     pprint(api_response)
 except ApiException as e:
@@ -163,9 +163,9 @@ No authorization required
 
 Retrieves a (paged) list of basic equivalent concept clique data from beacons 'data ready' from a previously /concepts posted query parameter submission 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -178,7 +178,7 @@ beacons = [56] # list[int] | set of aggregator indices of beacons whose data are
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of query results. Defaults to '1'.  (optional)
 page_size = 56 # int | number of concepts per page to be returned in a paged set of query results. Defaults to '10'.  (optional)
 
-try: 
+try:
     api_response = api_instance.get_concepts(query_id, beacons=beacons, page_number=page_number, page_size=page_size)
     pprint(api_response)
 except ApiException as e:
@@ -216,9 +216,9 @@ No authorization required
 
 Retrieves the status of a given keyword search query about the concepts in the system 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -229,7 +229,7 @@ api_instance = swagger_client.ConceptsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of concept query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose status is being polled (if omitted, then the status of all beacons from the query are returned)  (optional)
 
-try: 
+try:
     api_response = api_instance.get_concepts_query_status(query_id, beacons=beacons)
     pprint(api_response)
 except ApiException as e:
@@ -265,9 +265,9 @@ No authorization required
 
 Retrieves the beacon aggregator assigned cliques of equivalent concepts that includes the specified (url-encoded) CURIE identifiers. Note that the clique to which a given concept CURIE belongs may change over time as the aggregator progressively discovers the members of the clique. Any unmatched identifiers will be ignored (e.g. the id couldn't be found in any of the beacons)  
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -277,7 +277,7 @@ from pprint import pprint
 api_instance = swagger_client.ConceptsApi()
 ids = ['ids_example'] # list[str] | an array of [CURIE-encoded](https://www.w3.org/TR/curie/)  identifiers of interest to be resolved to a list of concept cliques
 
-try: 
+try:
     api_response = api_instance.post_cliques_query(ids)
     pprint(api_response)
 except ApiException as e:
@@ -312,9 +312,9 @@ No authorization required
 
 Posts the query parameters to retrieves a list of  concepts from the system 
 
-### Example 
+### Example
 ```python
-from __future__ import print_statement
+from __future__ import print_function
 import time
 import swagger_client
 from swagger_client.rest import ApiException
@@ -326,7 +326,7 @@ keywords = ['keywords_example'] # list[str] | an array of keywords or substrings
 categories = ['categories_example'] # list[str] | a subset array of concept categories (specified as codes 'gene',  'pathway', etc.) to which to constrain concepts matched by the main keyword search (see [Biolink Model](https://biolink.github.io/biolink-model) for the full list of codes)  (optional)
 beacons = [56] # list[int] | subset of aggregator indices of beacons to be used as knowledge sources for the query (if omitted, then the all beacons are queried)  (optional)
 
-try: 
+try:
     api_response = api_instance.post_concepts_query(keywords, categories=categories, beacons=beacons)
     pprint(api_response)
 except ApiException as e:
