@@ -2,6 +2,20 @@
 
 Application to create a proxy web service compliant with the [NCATS Translator Reasoner API](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI) which wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator). 
 
+## Preparing the Code
+
+The client and server code was generated using the *'generator.sh'* shell script which uses the Swagger CodeGene Java jar. Since the two API's used here are somewhat stable for the moment, there is not normally any need to rerun the generator script to regenerate the stubs. In fact, running the scripts may be somewhat destructive for the code base unless carefully done.
+
+If you choose to regenerate the code (e.g. to use an updated versions of the APIs or substitute your own API), you should be aware of a few potential issues, discussed here:
+
+1. The Swagger 'python-flask' code generation is a slightly buggy, in that the core package hierarchy for the server models is not generated completely correctly (to Python module standards).
+Specifically, under the server/swagger_server directory, the module tree starting with *bio.knowledge* is ill-formed. Thus, a small bit of refactoring is required every time the 'server' code is regenerated, mainly:
+
+     a)   Move the __init__.py and base_model_.py classes from the monolithic directory named 'bio.knowledge.server.model' into the actual subdirectory path 'bio/knowledge/server/model'
+     
+     b) To make this latter path fully Python module compliant, create an empty __init__.py file at each subdirectory of the actual subdirectory path 'bio/knowledge/server' (note, but keep intact the __init__.py file  which you moved over into 'bio/knowledge/server/model')
+
+
 ## Running the Application
 
 Two options:
