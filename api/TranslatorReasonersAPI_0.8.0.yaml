@@ -17,23 +17,23 @@ tags:
 - name: "translate"
   description: "Translate natural language question into a standardized query"
   externalDocs:
-    description: "Documentation for the RTX translate function"
-    url: "http://rtx.ncats.io/overview.html#translate"
+    description: "Documentation for the translate function"
+    url: "http://kba.ncats.io/overview.html#translate"
 - name: "query"
-  description: "Query RTX using a predefined question type"
+  description: "Query using a predefined question type"
   externalDocs:
-    description: "Documentation for the RTX query function"
-    url: "http://rtx.ncats.io/overview.html#query"
+    description: "Documentation for the query function"
+    url: "http://kba.ncats.io/overview.html#query"
 - name: "response"
   description: "Request stored responses and feedback for responses"
   externalDocs:
-    description: "Documentation for the RTX response function"
-    url: "http://rtx.ncats.io/overview.html#response"
+    description: "Documentation for the response function"
+    url: "http://kba.ncats.io/overview.html#response"
 - name: "result"
   description: "Request stored results and feedback for results"
   externalDocs:
-    description: "Documentation for the RTX result function"
-    url: "http://rtx.ncats.io/overview.html#result"
+    description: "Documentation for the result function"
+    url: "http://kba.ncats.io/overview.html#result"
 schemes:
 - "http"
 paths:
@@ -311,7 +311,7 @@ definitions:
     properties:
       context:
         type: "string"
-        example: "http://rtx.ncats.io/ns/translator.jsonld"
+        example: "http://kba.ncats.io/ns/translator.jsonld"
         description: "JSON-LD context URI"
       type:
         type: "string"
@@ -319,15 +319,15 @@ definitions:
         description: "Entity type of this response"
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/response/1234"
+        example: "http://kba.ncats.io/response/1234"
         description: "URI for this response"
       reasoner_id:
         type: "string"
         example: "RTX"
-        description: "Identifier string of the reasoner that provided this response (e.g., RTX, Robokop, Indigo, Integrator)"
+        description: "Identifier string of the reasoner that provided this response (e.g., KBA, RTX, Robokop, Indigo, Integrator)"
       tool_version:
         type: "string"
-        example: "RTX 0.4.0"
+        example: "0.4.0"
         description: "Version label of the tool that generated this response"
       schema_version:
         type: "string"
@@ -390,7 +390,7 @@ definitions:
     properties:
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        example: "http://kba.ncats.io/result/2345"
         description: "URI for this response"
       description:
         type: "string"
@@ -600,11 +600,11 @@ definitions:
     properties:
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        example: "http://kba.ncats.io/result/2345/feedback/4567"
         description: "URI for this feedback item"
       result_id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        example: "http://kba.ncats.io/result/2345"
         description: "URI for the result that this feedback corresponds to"
       expertise_level_id:
         type: "integer"
