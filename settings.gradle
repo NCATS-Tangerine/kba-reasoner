@@ -8,4 +8,4 @@
  */
 
 rootProject.name = 'kba-reasoner'
-include ":reasoner-server",":kba-client"
+include ":server",":client"
