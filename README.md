@@ -6,55 +6,17 @@ NCATS Translator Reasoner API wrapper for the Knowledge Beacon Aggregator.
 
 Two options:
 
-1. Run the application directly
-2. Run the application within Docker
+1. Run the application within Docker (preferred)
+2. Run the application directly
 
-### 1. Directly (code snippets are for Linux)
-
-#### Getting started
-
-Create a fresh virtual environment
-```
-virtualenv -p python3.7 venv
-source venv/bin/activate
-```
-
-Install the project requirements:
-```
-pip install -r requirements.txt
-```
-
-Setup the config file by copying the template file:
-```
-cp config.yaml-template config.yaml
-``` 
-(Optionally) change the port setting in `config.yaml` to match the port upon which you wish to publish the rhea beacon (if not port 8080).
-
-Navigate into the `/server` directory and run:
-```
-python setup.py install
-```
-
-Then navigate into the `/client` directories and do the same.
-
-Then navigate into the `/server` directory and run the program with:
-```
-python -m swagger_server
-```
-
-The Swagger UI can be found at `{basepath}/ui/`, e.g. `localhost:8080/ui/`
-
-#### Configuring the Wrapper
-
-You can change the port in the `config.yaml` file.
-
-### 2. Running under Docker
+### 1. Running under Docker
 
 #### Installation of Docker
 
 If you choose to run the dockerized versions of the applications, you'll obviously need to [install Docker first](https://docs.docker.com/engine/installation/) in your target Linux operating environment (bare metal server or virtual machine running Linux).
 
 For our installations, we typically use Ubuntu Linux, for which there is an [Ubuntu-specific docker installation using the repository](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository).
+
 Note that you should have 'curl' installed first before installing Docker:
 
 ```
@@ -134,3 +96,42 @@ To shut down the system, run the following:
 ```
 $ sudo docker stop kbaR
 ```
+
+### 2. Directly (code snippets are for Linux)
+
+#### Getting started
+
+Create a fresh virtual environment
+```
+virtualenv -p python3.7 venv
+source venv/bin/activate
+```
+
+Install the project requirements:
+```
+pip install -r requirements.txt
+```
+
+Setup the config file by copying the template file:
+```
+cp config.yaml-template config.yaml
+``` 
+(Optionally) change the port setting in `config.yaml` to match the port upon which you wish to publish the rhea beacon (if not port 8080).
+
+Navigate into the `/server` directory and run:
+```
+python setup.py install
+```
+
+Then navigate into the `/client` directories and do the same.
+
+Then navigate into the `/server` directory and run the program with:
+```
+python -m swagger_server
+```
+
+The Swagger UI can be found at `{basepath}/ui/`, e.g. `localhost:8080/ui/`
+
+#### Configuring the Wrapper
+
+You can change the port in the `config.yaml` file.
