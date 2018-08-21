@@ -295,7 +295,7 @@ definitions:
         additionalProperties: true
       reasoner_ids:
         type: "array"
-        example: [ "RTX", "Robokop", "Indigo" ]
+        example: [ "KBA", "RTX", "Robokop", "Indigo" ]
         description: "List of reasoners to consult for the query"
         items:
           type: "string"
@@ -323,7 +323,7 @@ definitions:
         description: "URI for this response"
       reasoner_id:
         type: "string"
-        example: "RTX"
+        example: "KBA"
         description: "Identifier string of the reasoner that provided this response (e.g., KBA, RTX, Robokop, Indigo, Integrator)"
       tool_version:
         type: "string"
@@ -445,8 +445,8 @@ definitions:
         description: "A score that denotes the similarity of this result to other members of the result_group"
       reasoner_id:
         type: "string"
-        example: "RTX"
-        description: "Identifier string of the reasoner that provided this result (e.g., RTX, Robokop, Indigo, Integrator)"
+        example: "KBA"
+        description: "Identifier string of the reasoner that provided this result (e.g., KBA, RTX, Robokop, Indigo, Integrator)"
       result_graph:
         $ref: "#/definitions/Result_graph"
     additionalProperties: true
@@ -540,7 +540,7 @@ definitions:
         description: "Corresponds to the @id of target node of this edge"
       is_defined_by:
         type: "string"
-        example: "RTX"
+        example: "KBA"
         description: "A CURIE/URI for the translator group that made the KG"
       provided_by:
         type: "string"
