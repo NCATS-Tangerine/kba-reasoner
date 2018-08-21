@@ -1,9 +1,6 @@
 # KBA Reasoner
 
-NCATS Translator Reasoner API wrapper for the Knowledge Beacon Aggregator
-
-## Translating Rhea to Beacon Concepts and Statements
-
+NCATS Translator Reasoner API wrapper for the Knowledge Beacon Aggregator.
 
 ## Running the Application
 
