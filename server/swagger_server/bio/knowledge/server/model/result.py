@@ -388,7 +388,7 @@ class Result(Model):
     def reasoner_id(self) -> str:
         """Gets the reasoner_id of this Result.
 
-        Identifier string of the reasoner that provided this result (e.g., RTX, Robokop, Indigo, Integrator)  # noqa: E501
+        Identifier string of the reasoner that provided this result (e.g., KBA, RTX, Robokop, Indigo, Integrator)  # noqa: E501
 
         :return: The reasoner_id of this Result.
         :rtype: str
@@ -399,7 +399,7 @@ class Result(Model):
     def reasoner_id(self, reasoner_id: str):
         """Sets the reasoner_id of this Result.
 
-        Identifier string of the reasoner that provided this result (e.g., RTX, Robokop, Indigo, Integrator)  # noqa: E501
+        Identifier string of the reasoner that provided this result (e.g., KBA, RTX, Robokop, Indigo, Integrator)  # noqa: E501
 
         :param reasoner_id: The reasoner_id of this Result.
         :type reasoner_id: str

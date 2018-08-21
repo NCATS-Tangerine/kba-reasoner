@@ -16,23 +16,23 @@ tags:
 - name: "translate"
   description: "Translate natural language question into a standardized query"
   externalDocs:
-    description: "Documentation for the RTX translate function"
-    url: "http://rtx.ncats.io/overview.html#translate"
+    description: "Documentation for the translate function"
+    url: "http://kba.ncats.io/overview.html#translate"
 - name: "query"
-  description: "Query RTX using a predefined question type"
+  description: "Query using a predefined question type"
   externalDocs:
-    description: "Documentation for the RTX query function"
-    url: "http://rtx.ncats.io/overview.html#query"
+    description: "Documentation for the query function"
+    url: "http://kba.ncats.io/overview.html#query"
 - name: "response"
   description: "Request stored responses and feedback for responses"
   externalDocs:
-    description: "Documentation for the RTX response function"
-    url: "http://rtx.ncats.io/overview.html#response"
+    description: "Documentation for the response function"
+    url: "http://kba.ncats.io/overview.html#response"
 - name: "result"
   description: "Request stored results and feedback for results"
   externalDocs:
-    description: "Documentation for the RTX result function"
-    url: "http://rtx.ncats.io/overview.html#result"
+    description: "Documentation for the result function"
+    url: "http://kba.ncats.io/overview.html#result"
 schemes:
 - "http"
 paths:
@@ -284,6 +284,7 @@ definitions:
       reasoner_ids:
         type: "array"
         example:
+        - "KBA"
         - "RTX"
         - "Robokop"
         - "Indigo"
@@ -308,6 +309,7 @@ definitions:
       message: "Your question was understood."
       query_type_id: "Q1"
       reasoner_ids:
+      - "KBA"
       - "RTX"
       - "Robokop"
       - "Indigo"
@@ -334,7 +336,7 @@ definitions:
     properties:
       context:
         type: "string"
-        example: "http://rtx.ncats.io/ns/translator.jsonld"
+        example: "http://kba.ncats.io/ns/translator.jsonld"
         description: "JSON-LD context URI"
       type:
         type: "string"
@@ -342,16 +344,16 @@ definitions:
         description: "Entity type of this response"
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/response/1234"
+        example: "http://kba.ncats.io/response/1234"
         description: "URI for this response"
       reasoner_id:
         type: "string"
-        example: "RTX"
+        example: "KBA"
         description: "Identifier string of the reasoner that provided this response\
-          \ (e.g., RTX, Robokop, Indigo, Integrator)"
+          \ (e.g., KBA, RTX, Robokop, Indigo, Integrator)"
       tool_version:
         type: "string"
-        example: "RTX 0.4.0"
+        example: "0.4.0"
         description: "Version label of the tool that generated this response"
       schema_version:
         type: "string"
@@ -432,9 +434,9 @@ definitions:
       table_column_names:
       - "chemical_substance.name"
       - "chemical_substance.id"
-      tool_version: "RTX 0.4.0"
+      tool_version: "0.4.0"
       terms: "{ 'disease': 'malaria' }"
-      context: "http://rtx.ncats.io/ns/translator.jsonld"
+      context: "http://kba.ncats.io/ns/translator.jsonld"
       known_query_type_id: "DEPRECATED"
       result_list:
       - result_type: "answer"
@@ -471,7 +473,7 @@ definitions:
             type: "protein"
             uri: "https://www.uniprot.org/uniprot/P00738"
           edge_list:
-          - is_defined_by: "RTX"
+          - is_defined_by: "KBA"
             negated: true
             evidence_type: "ECO:0000220"
             attribute_list:
@@ -491,7 +493,7 @@ definitions:
             type: "affects"
             relation: "affects"
             publications: "PubMed:12345562"
-          - is_defined_by: "RTX"
+          - is_defined_by: "KBA"
             negated: true
             evidence_type: "ECO:0000220"
             attribute_list:
@@ -519,8 +521,8 @@ definitions:
         score_direction: "Jaccard distance"
         score: 163.233
         result_group: 1
-        reasoner_id: "RTX"
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        reasoner_id: "KBA"
+        id: "http://kba.ncats.io/result/2345"
         text: "DEPRECATED"
         row_data:
         - "ibuprofen"
@@ -561,7 +563,7 @@ definitions:
             type: "protein"
             uri: "https://www.uniprot.org/uniprot/P00738"
           edge_list:
-          - is_defined_by: "RTX"
+          - is_defined_by: "KBA"
             negated: true
             evidence_type: "ECO:0000220"
             attribute_list:
@@ -581,7 +583,7 @@ definitions:
             type: "affects"
             relation: "affects"
             publications: "PubMed:12345562"
-          - is_defined_by: "RTX"
+          - is_defined_by: "KBA"
             negated: true
             evidence_type: "ECO:0000220"
             attribute_list:
@@ -609,24 +611,24 @@ definitions:
         score_direction: "Jaccard distance"
         score: 163.233
         result_group: 1
-        reasoner_id: "RTX"
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        reasoner_id: "KBA"
+        id: "http://kba.ncats.io/result/2345"
         text: "DEPRECATED"
         row_data:
         - "ibuprofen"
         - "CHEMBL:CHEMBL521"
         result_group_similarity_score: 0.95
         score_name: "Jaccard distance"
-      reasoner_id: "RTX"
+      reasoner_id: "KBA"
       result_code: "OK"
-      id: "http://rtx.ncats.io/api/rtx/v1/response/1234"
+      id: "http://kba.ncats.io/response/1234"
       restated_question_text: "Which proteins are affected by sickle cell anemia?"
   Result:
     type: "object"
     properties:
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        example: "http://kba.ncats.io/result/2345"
         description: "URI for this response"
       description:
         type: "string"
@@ -691,9 +693,9 @@ definitions:
           \ members of the result_group"
       reasoner_id:
         type: "string"
-        example: "RTX"
+        example: "KBA"
         description: "Identifier string of the reasoner that provided this result\
-          \ (e.g., RTX, Robokop, Indigo, Integrator)"
+          \ (e.g., KBA, RTX, Robokop, Indigo, Integrator)"
       result_graph:
         $ref: "#/definitions/Result_graph"
     description: "One of potentially several results or answers for a query"
@@ -732,7 +734,7 @@ definitions:
           type: "protein"
           uri: "https://www.uniprot.org/uniprot/P00738"
         edge_list:
-        - is_defined_by: "RTX"
+        - is_defined_by: "KBA"
           negated: true
           evidence_type: "ECO:0000220"
           attribute_list:
@@ -752,7 +754,7 @@ definitions:
           type: "affects"
           relation: "affects"
           publications: "PubMed:12345562"
-        - is_defined_by: "RTX"
+        - is_defined_by: "KBA"
           negated: true
           evidence_type: "ECO:0000220"
           attribute_list:
@@ -780,8 +782,8 @@ definitions:
       score_direction: "Jaccard distance"
       score: 163.233
       result_group: 1
-      reasoner_id: "RTX"
-      id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+      reasoner_id: "KBA"
+      id: "http://kba.ncats.io/result/2345"
       text: "DEPRECATED"
       row_data:
       - "ibuprofen"
@@ -835,7 +837,7 @@ definitions:
         type: "protein"
         uri: "https://www.uniprot.org/uniprot/P00738"
       edge_list:
-      - is_defined_by: "RTX"
+      - is_defined_by: "KBA"
         negated: true
         evidence_type: "ECO:0000220"
         attribute_list:
@@ -855,7 +857,7 @@ definitions:
         type: "affects"
         relation: "affects"
         publications: "PubMed:12345562"
-      - is_defined_by: "RTX"
+      - is_defined_by: "KBA"
         negated: true
         evidence_type: "ECO:0000220"
         attribute_list:
@@ -970,7 +972,7 @@ definitions:
         description: "Corresponds to the @id of target node of this edge"
       is_defined_by:
         type: "string"
-        example: "RTX"
+        example: "KBA"
         description: "A CURIE/URI for the translator group that made the KG"
       provided_by:
         type: "string"
@@ -1008,7 +1010,7 @@ definitions:
           $ref: "#/definitions/Edge_attribute"
     description: "An edge in the thought subgraph linking two nodes"
     example:
-      is_defined_by: "RTX"
+      is_defined_by: "KBA"
       negated: true
       evidence_type: "ECO:0000220"
       attribute_list:
@@ -1059,11 +1061,11 @@ definitions:
     properties:
       id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        example: "http://kba.ncats.io/result/2345/feedback/4567"
         description: "URI for this feedback item"
       result_id:
         type: "string"
-        example: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        example: "http://kba.ncats.io/result/2345"
         description: "URI for the result that this feedback corresponds to"
       expertise_level_id:
         type: "integer"
@@ -1094,10 +1096,10 @@ definitions:
       commenter_id: 1
       datetime: "2018-05-08 12:00"
       rating_id: 1
-      result_id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+      result_id: "http://kba.ncats.io/result/2345"
       expertise_level_id: 1
       comment: "This is a great result because..."
-      id: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+      id: "http://kba.ncats.io/result/2345/feedback/4567"
       commenter_full_name: "John Smith"
   ResultFeedback:
     type: "object"
@@ -1112,18 +1114,18 @@ definitions:
       - commenter_id: 1
         datetime: "2018-05-08 12:00"
         rating_id: 1
-        result_id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        result_id: "http://kba.ncats.io/result/2345"
         expertise_level_id: 1
         comment: "This is a great result because..."
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        id: "http://kba.ncats.io/result/2345/feedback/4567"
         commenter_full_name: "John Smith"
       - commenter_id: 1
         datetime: "2018-05-08 12:00"
         rating_id: 1
-        result_id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        result_id: "http://kba.ncats.io/result/2345"
         expertise_level_id: 1
         comment: "This is a great result because..."
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        id: "http://kba.ncats.io/result/2345/feedback/4567"
         commenter_full_name: "John Smith"
   ResponseFeedback:
     type: "object"
@@ -1138,18 +1140,18 @@ definitions:
       - commenter_id: 1
         datetime: "2018-05-08 12:00"
         rating_id: 1
-        result_id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        result_id: "http://kba.ncats.io/result/2345"
         expertise_level_id: 1
         comment: "This is a great result because..."
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        id: "http://kba.ncats.io/result/2345/feedback/4567"
         commenter_full_name: "John Smith"
       - commenter_id: 1
         datetime: "2018-05-08 12:00"
         rating_id: 1
-        result_id: "http://rtx.ncats.io/api/rtx/v1/result/2345"
+        result_id: "http://kba.ncats.io/result/2345"
         expertise_level_id: 1
         comment: "This is a great result because..."
-        id: "http://rtx.ncats.io/api/rtx/v1/result/2345/feedback/4567"
+        id: "http://kba.ncats.io/result/2345/feedback/4567"
         commenter_full_name: "John Smith"
   Query_terms:
     properties:

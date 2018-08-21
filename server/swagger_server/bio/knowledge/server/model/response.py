@@ -201,7 +201,7 @@ class Response(Model):
     def reasoner_id(self) -> str:
         """Gets the reasoner_id of this Response.
 
-        Identifier string of the reasoner that provided this response (e.g., RTX, Robokop, Indigo, Integrator)  # noqa: E501
+        Identifier string of the reasoner that provided this response (e.g., KBA, RTX, Robokop, Indigo, Integrator)  # noqa: E501
 
         :return: The reasoner_id of this Response.
         :rtype: str
@@ -212,7 +212,7 @@ class Response(Model):
     def reasoner_id(self, reasoner_id: str):
         """Sets the reasoner_id of this Response.
 
-        Identifier string of the reasoner that provided this response (e.g., RTX, Robokop, Indigo, Integrator)  # noqa: E501
+        Identifier string of the reasoner that provided this response (e.g., KBA, RTX, Robokop, Indigo, Integrator)  # noqa: E501
 
         :param reasoner_id: The reasoner_id of this Response.
         :type reasoner_id: str
