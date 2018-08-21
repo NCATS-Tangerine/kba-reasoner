@@ -1,6 +1,9 @@
 # ignore Swagger codegen jar - don't commit to repo!
 .codegen/
 
+# ignore local configuration files
+config.yaml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
