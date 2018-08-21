@@ -9,8 +9,10 @@
 # This is a whitespace (space or tab) delimited list of lines that will be added to .swagger-codegen-ignore prior to code generation, if they are not already present.
 IGNORE_LIST="Swagger2SpringBoot.java	README.md"
 
-# This is where we will download swagger-codegen-cli.jar from
-SWAGGER_JAR_LOCATION="http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.2.2/swagger-codegen-cli-2.2.2.jar -O .codegen/swagger-codegen-cli.jar"
+# This is where we will download swagger-codegen-cli.jar from 
+# (latest release 2.*.* version (keep an eye on 3.*.* release candidates for the future)
+
+SWAGGER_JAR_LOCATION="http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O .codegen/swagger-codegen-cli.jar"
 
 # Here we define the package structure of the server and client
 SERVER_BASE_PACKAGE="bio.knowledge.server"
