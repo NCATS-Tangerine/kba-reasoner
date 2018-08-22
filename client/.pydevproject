@@ -6,6 +6,5 @@
 <path>/${PROJECT_DIR_NAME}</path>
 <path>/${PROJECT_DIR_NAME}/swagger_client</path>
 <path>/${PROJECT_DIR_NAME}/test</path>
-<path>/client/Richard/AppData/Local/Programs/Python/Python37/Lib</path>
 </pydev_pathproperty>
 </pydev_project>
