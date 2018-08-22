@@ -8,8 +8,10 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "kba-reasoner.ncats.io"
+host: "localhost"
 basePath: "/"
+schemes:
+  - http
 externalDocs:
   description: "Documentation for the NCATS Biomedical Translator Reasoner-to-KBA API"
   url: "https://github.com/NCATS-Tangerine/kba-reasoner"
@@ -34,8 +36,6 @@ tags:
   externalDocs:
     description: "Documentation for the result function"
     url: "http://kba.ncats.io/overview.html#result"
-schemes:
-- "http"
 paths:
   /translate:
     post:
