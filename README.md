@@ -1,6 +1,6 @@
 # KBA Reasoner
 
-Application to create a proxy web service compliant with the [NCATS Translator Reasoner API](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI) which wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator). 
+Application to create a proxy web service compliant with the [NCATS Translator Reasoner API](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI) which wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator).  The application is based on [Swagger codegen](https://swagger.io/docs/open-source-tools/swagger-codegen/) of a Python client (KBA API) and Python flask server (Reasoner API), bridged together with custom handler code.
 
 ## Preparing the Code
 
