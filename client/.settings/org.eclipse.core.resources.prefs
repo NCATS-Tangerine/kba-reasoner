@@ -1,8 +1,10 @@
 eclipse.preferences.version=1
 encoding//swagger_client/__init__.py=utf-8
 encoding//swagger_client/api_client.py=utf-8
+encoding//swagger_client/apis/statements_api.py=utf-8
 encoding//swagger_client/bio/knowledge/client/api/concepts_api.py=utf-8
 encoding//swagger_client/bio/knowledge/client/model/__init__.py=utf-8
+encoding//swagger_client/configuration.py=utf-8
 encoding//swagger_client/models/__init__.py=utf-8
 encoding//test/test_client_beacon_concept_category.py=utf-8
 encoding//test/test_client_concept.py=utf-8
