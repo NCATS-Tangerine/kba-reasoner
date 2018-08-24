@@ -14,22 +14,9 @@ IGNORE_LIST="Swagger2SpringBoot.java	README.md"
 
 SWAGGER_JAR_LOCATION="http://central.maven.org/maven2/io/swagger/swagger-codegen-cli/2.3.1/swagger-codegen-cli-2.3.1.jar -O .codegen/swagger-codegen-cli.jar"
 
-# Here we define the package structure of the server and client
-SERVER_BASE_PACKAGE="bio.knowledge.server"
-CLIENT_BASE_PACKAGE="bio.knowledge.client"
-
-SERVER_CONFIG_PACKAGE="$SERVER_BASE_PACKAGE.configuration"
-SERVER_MODEL_PACKAGE="$SERVER_BASE_PACKAGE.model"
-SERVER_API_PACKAGE="$SERVER_BASE_PACKAGE.api"
-
-CLIENT_CONFIG_PACKAGE="$CLIENT_BASE_PACKAGE.configuration"
-CLIENT_MODEL_PACKAGE="$CLIENT_BASE_PACKAGE.model"
-CLIENT_API_PACKAGE="$CLIENT_BASE_PACKAGE.api"
-
 # Here we define the names of the directories that the server and client projects will be generated into
 SERVER_OUTPUT_DIR="server"
 CLIENT_OUTPUT_DIR="client"
-
 
 #############################
 ###        Methods        ###
@@ -134,14 +121,14 @@ fi
 if [ "$COMMAND" = client ]; then
 	ensureValidIgnoreFile "$CLIENT_OUTPUT_DIR"
 	
-	java -jar .codegen/swagger-codegen-cli.jar generate -i $SPECIFICATION_FILE_PATH -l python -o $CLIENT_OUTPUT_DIR --model-package $CLIENT_MODEL_PACKAGE --api-package $CLIENT_API_PACKAGE --additional-properties basePackage=$CLIENT_BASE_PACKAGE,configPackage=$CLIENT_CONFIG_PACKAGE
-
+	java -jar .codegen/swagger-codegen-cli.jar generate -i $SPECIFICATION_FILE_PATH -l python -o $CLIENT_OUTPUT_DIR
+	
 	exit 0
 
 elif [ "$COMMAND" = server ]; then
 	ensureValidIgnoreFile "$SERVER_OUTPUT_DIR"
 	
-	java -jar .codegen/swagger-codegen-cli.jar generate -i $SPECIFICATION_FILE_PATH -l python-flask -o $SERVER_OUTPUT_DIR --model-package $SERVER_MODEL_PACKAGE --api-package $SERVER_API_PACKAGE --additional-properties basePackage=$SERVER_BASE_PACKAGE,configPackage=$SERVER_CONFIG_PACKAGE
+	java -jar .codegen/swagger-codegen-cli.jar generate -i $SPECIFICATION_FILE_PATH -l python-flask -o $SERVER_OUTPUT_DIR 
 
 	exit 0
 
