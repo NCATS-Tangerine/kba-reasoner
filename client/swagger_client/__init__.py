@@ -16,9 +16,9 @@
 from __future__ import absolute_import
 
 # import apis into sdk package
-from bio.knowledge.client.api.concepts_api import ConceptsApi
-from bio.knowledge.client.api.metadata_api import MetadataApi
-from bio.knowledge.client.api.statements_api import StatementsApi
+from swagger_client.bio.knowledge.client.api.concepts_api import ConceptsApi
+from swagger_client.bio.knowledge.client.api.metadata_api import MetadataApi
+from swagger_client.bio.knowledge.client.api.statements_api import StatementsApi
 
 # import ApiClient
 from swagger_client.api_client import ApiClient
