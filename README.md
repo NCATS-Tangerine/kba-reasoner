@@ -163,18 +163,13 @@ You can change the port in the `config.yaml` file.
 
 The client side of the application is a client accessing the KBA REST API. As such, a Python unit test suite is available; however, running these units tests requires a bit of preparation:
 
-1. The PYTHONPATH seems to need to include the client root directory, swagger_client and test directories, i.e. (UNIX style path shown) plus the Python site packages
+1. The PYTHONPATH seems to need to include the client root directory and Python 'site-packages' e.g.
 
 	 PYTHONPATH=${PROJECT_DIR_NAME}/client
-	 PYTHONPATH=$PYTHONPATH:${PROJECT_DIR_NAME}/client/swagger_client
-	 PYTHONPATH=$PYTHONPATH:${PROJECT_DIR_NAME}/client/test
-	 PYTHONPATH=$PYTHONPATH:<path-to-your-python>/site-packages
+	 PYTHONPATH=${PYTHONPATH}:path-to-your-virtualenv-python/site-packages
 
-2. Unit tests probably run best within a virtualenv. 
+2. Unit tests are probably best run within a virtualenv (not sure if it matters whether 'python2' or 'python3' is used, but we are tending to stick with python3 now...)
 
-For unit tests, you can use the [Pytest framework] [https://docs.pytest.org/en/latest/getting-started.html).
-
-**NOTE: Still troubleshooting Swagger generated Python Unittests.**
 
 ### Server Side
 
