@@ -1,0 +1,10 @@
+eclipse.preferences.version=1
+encoding//test/test_client_beacon_predicate.py=utf-8
+encoding//test/test_client_clique.py=utf-8
+encoding//test/test_client_concept.py=utf-8
+encoding//test/test_client_concept_with_details_beacon_entry.py=utf-8
+encoding//test/test_client_knowledge_map.py=utf-8
+encoding//test/test_client_predicate.py=utf-8
+encoding//test/test_client_statement_citation.py=utf-8
+encoding//test/test_concepts_api.py=utf-8
+encoding//test/test_metadata_api.py=utf-8
