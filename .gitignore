@@ -8,12 +8,17 @@
 # ignore local configuration files
 config.yaml
 
-py3/
-py27/
+py3*/
+py2.7/
+
+
 
 ###################
 # Generic ignores #
 ###################
+
+# PyCharm IDE related exclusions
+.idea
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

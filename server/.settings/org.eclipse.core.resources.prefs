@@ -1,7 +1,0 @@
-eclipse.preferences.version=1
-encoding//swagger_server/models/__init__.py=utf-8
-encoding//swagger_server/models/edge_attribute.py=utf-8
-encoding//swagger_server/models/node_attribute.py=utf-8
-encoding//swagger_server/models/query.py=utf-8
-encoding//swagger_server/models/response.py=utf-8
-encoding//swagger_server/models/result.py=utf-8
