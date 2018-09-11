@@ -161,16 +161,14 @@ You can change the port in the `config.yaml` file.
 
 ### Client Side
 
-The client side of the application is a client accessing the KBA REST API. As such, a Python unit test suite is available; however, running these units tests requires a bit of preparation:
-
-1. The PYTHONPATH seems to need to include the client root directory and Python 'site-packages' e.g.
-
-	 PYTHONPATH=${PROJECT_DIR_NAME}/client
-	 PYTHONPATH=${PYTHONPATH}:path-to-your-virtualenv-python/site-packages
-
-2. Unit tests are probably best run within a virtualenv (not sure if it matters whether 'python2' or 'python3' is used, but we are tending to stick with python3 now...)
-
+The client side of the application is a client accessing the KBA REST API. A 'tox.ini' file
+is available to run the unit tests, which are run both under Python 2.7 and Python 3.5 (note
+that the OpenAPI code generated tox.ini file only specifies an py3 environment but you should
+change this to a py35 environment for testing since the generated code is incompatible with
+Python 3.7 or later due to the addition of a new reserved keyword 'async')
 
 ### Server Side
 
-There isn't really a unit test suite for the server site. One can simply run the application directly using the instructions noted above.
+The server side has a 'tox.ini' file which may be used to test the server code.
+Be warned that the ReasonerAPI OpenAPI specification has a peculiarity that 
+results in unit test failure (to be investigated).

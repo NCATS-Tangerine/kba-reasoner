@@ -1,8 +1,19 @@
-# ignore Swagger codegen jar - don't commit to repo!
-.codegen/
+############################
+# project-specific ignores #
+############################
+
+# ignore openapi-generator.jar - don't commit to repo!
+.openapi-generator/
 
 # ignore local configuration files
 config.yaml
+
+py3/
+py27/
+
+###################
+# Generic ignores #
+###################
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
