@@ -9,9 +9,7 @@
 config.yaml
 
 py3*/
-py2.7/
-
-
+py2*/
 
 ###################
 # Generic ignores #

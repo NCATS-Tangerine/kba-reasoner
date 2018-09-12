@@ -1,0 +1,1146 @@
+openapi: 3.0.1
+info:
+  contact:
+    email: richard@starinformatics.com
+  description: NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  title: NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator
+  version: 0.8.0
+externalDocs:
+  description: Documentation for the NCATS Biomedical Translator Reasoner-to-KBA API
+  url: https://github.com/NCATS-Tangerine/kba-reasoner
+servers:
+- url: http://localhost:8090/
+tags:
+- description: Translate natural language question into a standardized query
+  externalDocs:
+    description: Documentation for the translate function
+    url: http://kba.ncats.io/overview.html#translate
+  name: translate
+- description: Query using a predefined question type
+  externalDocs:
+    description: Documentation for the query function
+    url: http://kba.ncats.io/overview.html#query
+  name: query
+- description: Request stored responses and feedback for responses
+  externalDocs:
+    description: Documentation for the response function
+    url: http://kba.ncats.io/overview.html#response
+  name: response
+- description: Request stored results and feedback for results
+  externalDocs:
+    description: Documentation for the result function
+    url: http://kba.ncats.io/overview.html#result
+  name: result
+paths:
+  /translate:
+    post:
+      operationId: translate
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Question'
+        description: Question object that needs to be translated
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/Query'
+                type: array
+          description: successful operation
+        400:
+          content: {}
+          description: Invalid status value
+      summary: Translate natural language question into a standardized query
+      tags:
+      - translate
+      x-swagger-router-controller: swagger_server.controllers.translate_controller
+      x-openapi-router-controller: reasoner_server.controllers.translate_controller
+  /query:
+    post:
+      operationId: query
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+        description: Query information to be submitted
+        required: true
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+          description: successful operation
+        400:
+          content: {}
+          description: Invalid status value
+      summary: Query using a predefined query type
+      tags:
+      - query
+      x-swagger-router-controller: swagger_server.controllers.query_controller
+      x-openapi-router-controller: reasoner_server.controllers.query_controller
+  /response/{response_id}:
+    get:
+      operationId: get_response
+      parameters:
+      - description: Integer identifier of the response to return
+        in: path
+        name: response_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+          description: successful operation
+        404:
+          content: {}
+          description: Response_id not found
+      summary: Request stored responses and results
+      tags:
+      - response
+      x-swagger-router-controller: swagger_server.controllers.response_controller
+      x-openapi-router-controller: reasoner_server.controllers.response_controller
+  /response/{response_id}/feedback:
+    get:
+      operationId: get_response_feedback
+      parameters:
+      - description: Integer identifier of the response to return
+        in: path
+        name: response_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseFeedback'
+          description: successful operation
+        404:
+          content: {}
+          description: Response_id not found
+      summary: Request stored feedback for this response
+      tags:
+      - response
+      x-swagger-router-controller: swagger_server.controllers.response_controller
+      x-openapi-router-controller: reasoner_server.controllers.response_controller
+  /result/{result_id}:
+    get:
+      operationId: get_result
+      parameters:
+      - description: Integer identifier of the result to return
+        in: path
+        name: result_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+          description: successful operation
+        404:
+          content: {}
+          description: result_id not found
+      summary: Request stored result
+      tags:
+      - result
+      x-swagger-router-controller: swagger_server.controllers.result_controller
+      x-openapi-router-controller: reasoner_server.controllers.result_controller
+  /result/{result_id}/feedback:
+    get:
+      operationId: get_result_feedback
+      parameters:
+      - description: Integer identifier of the result to return
+        in: path
+        name: result_id
+        required: true
+        schema:
+          type: integer
+      responses:
+        200:
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResultFeedback'
+          description: successful operation
+        404:
+          content: {}
+          description: result_id not found
+      summary: Request stored feedback for this result
+      tags:
+      - result
+      x-swagger-router-controller: swagger_server.controllers.result_controller
+      x-openapi-router-controller: reasoner_server.controllers.result_controller
+    post:
+      operationId: post_result_feedback
+      parameters:
+      - description: Integer identifier of the result to return
+        in: path
+        name: result_id
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Feedback'
+        description: Comment information
+        required: true
+      responses:
+        200:
+          content: {}
+          description: successful operation
+        400:
+          content: {}
+          description: Invalid status value
+      summary: Store feedback for a particular result
+      tags:
+      - result
+      x-swagger-router-controller: swagger_server.controllers.result_controller
+      x-openapi-router-controller: reasoner_server.controllers.result_controller
+components:
+  schemas:
+    Query_terms:
+      description: Dict of terms needed by the specific query type
+      example:
+        anatomical_entity: liver
+        disease: malaria
+        metabolite: ibuprofen
+        protein: P12345
+        chemical_substance: ibuprofen
+      properties:
+        anatomical_entity:
+          example: liver
+          type: string
+        disease:
+          example: malaria
+          type: string
+        metabolite:
+          example: ibuprofen
+          type: string
+        protein:
+          example: P12345
+          type: string
+        chemical_substance:
+          example: ibuprofen
+          type: string
+    Query:
+      example:
+        original_question: what genetic conditions offer protection against malaria
+        restated_question: Which genetic conditions may offer protection against malaria?
+        message: Your question was understood.
+        query_type_id: Q1
+        reasoner_ids:
+        - KBA
+        - RTX
+        - Robokop
+        - Indigo
+        bypass_cache: "true"
+        page_number: 1
+        terms:
+          anatomical_entity: liver
+          disease: malaria
+          metabolite: ibuprofen
+          protein: P12345
+          chemical_substance: ibuprofen
+        asynchronous: False
+        known_query_type_id: DEPRECATED
+        options: coalesce=True,threshold=0.9
+        query_plan:
+        - node_type: chemical_substance
+          node_name: ibuprofen
+        - edge_type: interacts_with
+        - node_type: protein
+        max_results: 100
+        page_size: 100
+      properties:
+        original_question:
+          description: Original question as it was typed in by the user
+          example: what genetic conditions offer protection against malaria
+          type: string
+        restated_question:
+          description: Restatement of the question as understood by the translator
+          example: Which genetic conditions may offer protection against malaria?
+          type: string
+        message:
+          description: Response from the translation engine to the user
+          example: Your question was understood.
+          type: string
+        known_query_type_id:
+          description: DEPRECATED in favor of query_type_id
+          example: DEPRECATED
+          type: string
+        query_type_id:
+          description: Identifier for the specific query type
+          example: Q1
+          type: string
+        bypass_cache:
+          description: Set to true in order to bypass any possible cached response and try to answer the query over again
+          example: "true"
+          type: string
+        asynchronous:
+          description: Set to true in order to receive an incomplete response_id if the query will take a while. Client can then periodically request that response_id for a status update and eventual complete response
+          example: False
+          type: string
+        options:
+          description: A string of options that can be sent with the query. Options are tool specific and not stipulated here
+          example: coalesce=True,threshold=0.9
+          type: string
+        max_results:
+          description: Maximum number of individual results to return
+          example: 100
+          type: integer
+        page_size:
+          description: Split the results into pages with this number of results each
+          example: 100
+          type: integer
+        page_number:
+          description: Page number of results when the number of results exceeds the page_size
+          example: 1
+          type: integer
+        terms:
+          $ref: '#/components/schemas/Query_terms'
+        reasoner_ids:
+          description: List of reasoners to consult for the query
+          example:
+          - KBA
+          - RTX
+          - Robokop
+          - Indigo
+          items:
+            type: string
+          type: array
+        query_plan:
+          description: List of node types and edge types in a series that constitute a query plan. Experimental.
+          example:
+          - node_type: chemical_substance
+            node_name: ibuprofen
+          - edge_type: interacts_with
+          - node_type: protein
+          items:
+            properties: {}
+            type: object
+          type: array
+      type: object
+    Node:
+      description: A node in the thought subgraph
+      example:
+        symbol: HP
+        node_attributes:
+        - name: Wikipedia article
+          type: article
+          value: 7.23e-12
+          url: https://en.wikipedia.org/wiki/Malaria
+        - name: Wikipedia article
+          type: article
+          value: 7.23e-12
+          url: https://en.wikipedia.org/wiki/Malaria
+        name: Haptoglobin
+        description: Haptoglobin captures, and combines with free plasma hemoglobin...
+        id: OMIM:603903
+        type: protein
+        uri: https://www.uniprot.org/uniprot/P00738
+      properties:
+        id:
+          description: CURIE identifier for this node
+          example: OMIM:603903
+          type: string
+        uri:
+          description: URI identifier for this node"
+          example: https://www.uniprot.org/uniprot/P00738
+          type: string
+        name:
+          description: Formal name of the entity
+          example: Haptoglobin
+          type: string
+        type:
+          description: Entity type of this node (e.g., protein, disease, etc.)
+          example: protein
+          type: string
+        description:
+          description: One to three sentences of description/definition of this entity
+          example: Haptoglobin captures, and combines with free plasma hemoglobin...
+          type: string
+        symbol:
+          description: Short abbreviation or symbol for this entity
+          example: HP
+          type: string
+        node_attributes:
+          description: A list of arbitrary attributes for the node
+          items:
+            $ref: '#/components/schemas/Node_attribute'
+          type: array
+      type: object
+    Edge_attribute:
+      description: A generic additional attribute for an edge
+      example:
+        name: Cell type limitation
+        type: localization
+        value: MFC cells
+        url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+      properties:
+        type:
+          description: Entity type of this attribute
+          example: localization
+          type: string
+        name:
+          description: Formal name of the attribute
+          example: Cell type limitation
+          type: string
+        value:
+          description: Value of the attribute. While all attributes should have a name, many will not have a value
+          example: MFC cells
+          type: string
+        url:
+          description: A URL corresponding to this attribute
+          example: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+          type: string
+      type: object
+    Result:
+      description: One of potentially several results or answers for a query
+      example:
+        result_type: answer
+        result_graph:
+          node_list:
+          - symbol: HP
+            node_attributes:
+            - name: Wikipedia article
+              type: article
+              value: 7.23e-12
+              url: https://en.wikipedia.org/wiki/Malaria
+            - name: Wikipedia article
+              type: article
+              value: 7.23e-12
+              url: https://en.wikipedia.org/wiki/Malaria
+            name: Haptoglobin
+            description: Haptoglobin captures, and combines with free plasma hemoglobin...
+            id: OMIM:603903
+            type: protein
+            uri: https://www.uniprot.org/uniprot/P00738
+          - symbol: HP
+            node_attributes:
+            - name: Wikipedia article
+              type: article
+              value: 7.23e-12
+              url: https://en.wikipedia.org/wiki/Malaria
+            - name: Wikipedia article
+              type: article
+              value: 7.23e-12
+              url: https://en.wikipedia.org/wiki/Malaria
+            name: Haptoglobin
+            description: Haptoglobin captures, and combines with free plasma hemoglobin...
+            id: OMIM:603903
+            type: protein
+            uri: https://www.uniprot.org/uniprot/P00738
+          edge_list:
+          - is_defined_by: KBA
+            negated: true
+            evidence_type: ECO:0000220
+            attribute_list:
+            - name: Cell type limitation
+              type: localization
+              value: MFC cells
+              url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+            - name: Cell type limitation
+              type: localization
+              value: MFC cells
+              url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+            confidence: 0.99
+            provided_by: OMIM
+            qualifiers: ECO:0000220
+            target_id: https://www.uniprot.org/uniprot/P00738
+            source_id: http://omim.org/entry/603903
+            type: affects
+            relation: affects
+            publications: PubMed:12345562
+          - is_defined_by: KBA
+            negated: true
+            evidence_type: ECO:0000220
+            attribute_list:
+            - name: Cell type limitation
+              type: localization
+              value: MFC cells
+              url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+            - name: Cell type limitation
+              type: localization
+              value: MFC cells
+              url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+            confidence: 0.99
+            provided_by: OMIM
+            qualifiers: ECO:0000220
+            target_id: https://www.uniprot.org/uniprot/P00738
+            source_id: http://omim.org/entry/603903
+            type: affects
+            relation: affects
+            publications: PubMed:12345562
+        essence: ibuprofen
+        confidence: 0.9234
+        description: The genetic condition sickle cell anemia may provide protection from cerebral malaria via genetic alterations of proteins HBB (P68871) and HMOX1 (P09601).
+        score_direction: Jaccard distance
+        score: 163.233
+        result_group: 1
+        reasoner_id: KBA
+        id: http://kba.ncats.io/result/2345
+        text: DEPRECATED
+        row_data:
+        - ibuprofen
+        - CHEMBL:CHEMBL521
+        result_group_similarity_score: 0.95
+        score_name: Jaccard distance
+      properties:
+        id:
+          description: URI for this response
+          example: http://kba.ncats.io/result/2345
+          type: string
+        description:
+          description: A free text description of this result answer from the reasoner
+          example: The genetic condition sickle cell anemia may provide protection from cerebral malaria via genetic alterations of proteins HBB (P68871) and HMOX1 (P09601).
+          type: string
+        text:
+          description: DEPRECATED
+          example: DEPRECATED
+          type: string
+        essence:
+          description: A single string that is the terse essence of the result (useful for simple answers)
+          example: ibuprofen
+          type: string
+        row_data:
+          description: An arbitrary list of values that captures the essence of the result that can be turned into a tabular result across all answers (each result is a row) for a user that wants tabular output
+          example:
+          - ibuprofen
+          - CHEMBL:CHEMBL521
+          items:
+            type: string
+          type: array
+        score:
+          description: Any type of score associated with this result (highest confidence)
+          example: 163.233
+          format: float
+          type: number
+        score_name:
+          description: Name for the score
+          example: Jaccard distance
+          type: string
+        score_direction:
+          description: 'Sorting indicator for the score: one of higher_is_better or
+            lower_is_better'
+          example: Jaccard distance
+          type: string
+        confidence:
+          description: Confidence metric for this result, a value 0.0 (no confidence) and 1.0 (highest confidence)
+          example: 0.9234
+          format: float
+          type: number
+        result_type:
+          description: 'One of several possible result types: ''individual query answer'',
+            ''neighborhood graph'', ''type summary graph'''
+          example: answer
+          type: string
+        result_group:
+          description: An integer group number for results for use in cases where several results should be grouped together. Also useful to control sorting ascending.
+          example: 1
+          type: integer
+        result_group_similarity_score:
+          description: A score that denotes the similarity of this result to other members of the result_group
+          example: 0.95
+          format: float
+          type: number
+        reasoner_id:
+          description: Identifier string of the reasoner that provided this result (e.g., KBA, RTX, Robokop, Indigo, Integrator)
+          example: KBA
+          type: string
+        result_graph:
+          $ref: '#/components/schemas/Result_graph'
+      type: object
+    Response:
+      example:
+        response_code: OK
+        n_results: 42
+        type: medical_translator_query_result
+        original_question_text: what proteins are affected by sickle cell anemia
+        message: 1 answer found
+        query_type_id: Q2
+        schema_version: 0.8.0
+        datetime: 2018-01-09 12:34:45
+        table_column_names:
+        - chemical_substance.name
+        - chemical_substance.id
+        tool_version: 0.4.0
+        terms: '{ ''disease'': ''malaria'' }'
+        context: http://kba.ncats.io/ns/translator.jsonld
+        known_query_type_id: DEPRECATED
+        result_list:
+        - result_type: answer
+          result_graph:
+            node_list:
+            - symbol: HP
+              node_attributes:
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              name: Haptoglobin
+              description: Haptoglobin captures, and combines with free plasma hemoglobin...
+              id: OMIM:603903
+              type: protein
+              uri: https://www.uniprot.org/uniprot/P00738
+            - symbol: HP
+              node_attributes:
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              name: Haptoglobin
+              description: Haptoglobin captures, and combines with free plasma hemoglobin...
+              id: OMIM:603903
+              type: protein
+              uri: https://www.uniprot.org/uniprot/P00738
+            edge_list:
+            - is_defined_by: KBA
+              negated: true
+              evidence_type: ECO:0000220
+              attribute_list:
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              confidence: 0.99
+              provided_by: OMIM
+              qualifiers: ECO:0000220
+              target_id: https://www.uniprot.org/uniprot/P00738
+              source_id: http://omim.org/entry/603903
+              type: affects
+              relation: affects
+              publications: PubMed:12345562
+            - is_defined_by: KBA
+              negated: true
+              evidence_type: ECO:0000220
+              attribute_list:
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              confidence: 0.99
+              provided_by: OMIM
+              qualifiers: ECO:0000220
+              target_id: https://www.uniprot.org/uniprot/P00738
+              source_id: http://omim.org/entry/603903
+              type: affects
+              relation: affects
+              publications: PubMed:12345562
+          essence: ibuprofen
+          confidence: 0.9234
+          description: The genetic condition sickle cell anemia may provide protection from cerebral malaria via genetic alterations of proteins HBB (P68871) and HMOX1 (P09601).
+          score_direction: Jaccard distance
+          score: 163.233
+          result_group: 1
+          reasoner_id: KBA
+          id: http://kba.ncats.io/result/2345
+          text: DEPRECATED
+          row_data:
+          - ibuprofen
+          - CHEMBL:CHEMBL521
+          result_group_similarity_score: 0.95
+          score_name: Jaccard distance
+        - result_type: answer
+          result_graph:
+            node_list:
+            - symbol: HP
+              node_attributes:
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              name: Haptoglobin
+              description: Haptoglobin captures, and combines with free plasma hemoglobin...
+              id: OMIM:603903
+              type: protein
+              uri: https://www.uniprot.org/uniprot/P00738
+            - symbol: HP
+              node_attributes:
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              - name: Wikipedia article
+                type: article
+                value: 7.23e-12
+                url: https://en.wikipedia.org/wiki/Malaria
+              name: Haptoglobin
+              description: Haptoglobin captures, and combines with free plasma hemoglobin...
+              id: OMIM:603903
+              type: protein
+              uri: https://www.uniprot.org/uniprot/P00738
+            edge_list:
+            - is_defined_by: KBA
+              negated: true
+              evidence_type: ECO:0000220
+              attribute_list:
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              confidence: 0.99
+              provided_by: OMIM
+              qualifiers: ECO:0000220
+              target_id: https://www.uniprot.org/uniprot/P00738
+              source_id: http://omim.org/entry/603903
+              type: affects
+              relation: affects
+              publications: PubMed:12345562
+            - is_defined_by: KBA
+              negated: true
+              evidence_type: ECO:0000220
+              attribute_list:
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              - name: Cell type limitation
+                type: localization
+                value: MFC cells
+                url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+              confidence: 0.99
+              provided_by: OMIM
+              qualifiers: ECO:0000220
+              target_id: https://www.uniprot.org/uniprot/P00738
+              source_id: http://omim.org/entry/603903
+              type: affects
+              relation: affects
+              publications: PubMed:12345562
+          essence: ibuprofen
+          confidence: 0.9234
+          description: The genetic condition sickle cell anemia may provide protection from cerebral malaria via genetic alterations of proteins HBB (P68871) and HMOX1 (P09601).
+          score_direction: Jaccard distance
+          score: 163.233
+          result_group: 1
+          reasoner_id: KBA
+          id: http://kba.ncats.io/result/2345
+          text: DEPRECATED
+          row_data:
+          - ibuprofen
+          - CHEMBL:CHEMBL521
+          result_group_similarity_score: 0.95
+          score_name: Jaccard distance
+        reasoner_id: KBA
+        result_code: OK
+        id: http://kba.ncats.io/response/1234
+        restated_question_text: Which proteins are affected by sickle cell anemia?
+      properties:
+        context:
+          description: JSON-LD context URI
+          example: http://kba.ncats.io/ns/translator.jsonld
+          type: string
+        type:
+          description: Entity type of this response
+          example: medical_translator_query_result
+          type: string
+        id:
+          description: URI for this response
+          example: http://kba.ncats.io/response/1234
+          type: string
+        reasoner_id:
+          description: Identifier string of the reasoner that provided this response (e.g., KBA, RTX, Robokop, Indigo, Integrator)
+          example: KBA
+          type: string
+        tool_version:
+          description: Version label of the tool that generated this response
+          example: 0.4.0
+          type: string
+        schema_version:
+          description: Version label of this JSON-LD schema
+          example: 0.8.0
+          type: string
+        datetime:
+          description: ISO standard datetime string for the time that this response was generated
+          example: 2018-01-09 12:34:45
+          type: string
+        original_question_text:
+          description: The original question text typed in by the user
+          example: what proteins are affected by sickle cell anemia
+          type: string
+        restated_question_text:
+          description: A precise restatement of the question, as understood by the Translator, for which the answer applies. The user should verify that the restated question matches the intent of their original question (it might not).
+          example: Which proteins are affected by sickle cell anemia?
+          type: string
+        known_query_type_id:
+          description: DEPRECATED
+          example: DEPRECATED
+          type: string
+        query_type_id:
+          description: The query type id if one is known for the query/response (as defined in https://docs.google.com/spreadsheets/d/1Gna_yCbHj14Brp-8GBY50Mq36nwKGl5T5z4REUQQsfw/edit )
+          example: Q2
+          type: string
+        terms:
+          description: The is string of the query type id if one is known for the query/response
+          example: '{ ''disease'': ''malaria'' }'
+          properties: {}
+          type: object
+        n_results:
+          description: Total number of results in the response (which may be less than what is returned if limits were placed on the results to return)
+          example: 42
+          type: integer
+        response_code:
+          description: Set to OK for success, or some other short string to indicate and error (e.g., KGUnavailable, TermNotFound, etc.)
+          example: OK
+          type: string
+        result_code:
+          description: DEPRECATED
+          example: OK
+          type: string
+        message:
+          description: Extended message denoting the success or mode of failure for the response
+          example: 1 answer found
+          type: string
+        table_column_names:
+          description: List of column names that corresponds to the row_data for each result
+          example:
+          - chemical_substance.name
+          - chemical_substance.id
+          items:
+            type: string
+          type: array
+        result_list:
+          items:
+            $ref: '#/components/schemas/Result'
+          type: array
+      type: object
+    ResponseFeedback:
+      description: Feedback for all the results corresponding to this response
+      example:
+        feedback_list:
+        - commenter_id: 1
+          datetime: 2018-05-08 12:00
+          rating_id: 1
+          result_id: http://kba.ncats.io/result/2345
+          expertise_level_id: 1
+          comment: This is a great result because...
+          id: http://kba.ncats.io/result/2345/feedback/4567
+          commenter_full_name: John Smith
+        - commenter_id: 1
+          datetime: 2018-05-08 12:00
+          rating_id: 1
+          result_id: http://kba.ncats.io/result/2345
+          expertise_level_id: 1
+          comment: This is a great result because...
+          id: http://kba.ncats.io/result/2345/feedback/4567
+          commenter_full_name: John Smith
+      properties:
+        feedback_list:
+          items:
+            $ref: '#/components/schemas/Feedback'
+          type: array
+      type: object
+    Node_attribute:
+      description: A generic attribute for a node
+      example:
+        name: Wikipedia article
+        type: article
+        value: 7.23e-12
+        url: https://en.wikipedia.org/wiki/Malaria
+      properties:
+        type:
+          description: Entity type of this attribute
+          example: article
+          type: string
+        name:
+          description: Formal name of the attribute
+          example: Wikipedia article
+          type: string
+        value:
+          description: Value of the attribute
+          example: 7.23e-12
+          type: string
+        url:
+          description: A URL corresponding to this attribute
+          example: https://en.wikipedia.org/wiki/Malaria
+          type: string
+      type: object
+    Feedback:
+      description: A single unit of Feedback
+      example:
+        commenter_id: 1
+        datetime: 2018-05-08 12:00
+        rating_id: 1
+        result_id: http://kba.ncats.io/result/2345
+        expertise_level_id: 1
+        comment: This is a great result because...
+        id: http://kba.ncats.io/result/2345/feedback/4567
+        commenter_full_name: John Smith
+      properties:
+        id:
+          description: URI for this feedback item
+          example: http://kba.ncats.io/result/2345/feedback/4567
+          type: string
+        result_id:
+          description: URI for the result that this feedback corresponds to
+          example: http://kba.ncats.io/result/2345
+          type: string
+        expertise_level_id:
+          description: Integer identifier of the claimed expertise level
+          example: 1
+          type: integer
+        rating_id:
+          description: Integer identifier of the applied rating
+          example: 1
+          type: integer
+        commenter_id:
+          description: Integer identifier of the commenter
+          example: 1
+          type: integer
+        commenter_full_name:
+          description: Full name of the commenter
+          example: John Smith
+          type: string
+        datetime:
+          description: Datetime when the feedback was provided
+          example: 2018-05-08 12:00
+          type: string
+        comment:
+          description: A free text comment about this result
+          example: This is a great result because...
+          type: string
+      type: object
+    Result_graph:
+      description: A thought graph associated with this result. This will commonly be a linear path subgraph from one concept to another, but related items aside of the path may be included.
+      example:
+        node_list:
+        - symbol: HP
+          node_attributes:
+          - name: Wikipedia article
+            type: article
+            value: 7.23e-12
+            url: https://en.wikipedia.org/wiki/Malaria
+          - name: Wikipedia article
+            type: article
+            value: 7.23e-12
+            url: https://en.wikipedia.org/wiki/Malaria
+          name: Haptoglobin
+          description: Haptoglobin captures, and combines with free plasma hemoglobin...
+          id: OMIM:603903
+          type: protein
+          uri: https://www.uniprot.org/uniprot/P00738
+        - symbol: HP
+          node_attributes:
+          - name: Wikipedia article
+            type: article
+            value: 7.23e-12
+            url: https://en.wikipedia.org/wiki/Malaria
+          - name: Wikipedia article
+            type: article
+            value: 7.23e-12
+            url: https://en.wikipedia.org/wiki/Malaria
+          name: Haptoglobin
+          description: Haptoglobin captures, and combines with free plasma hemoglobin...
+          id: OMIM:603903
+          type: protein
+          uri: https://www.uniprot.org/uniprot/P00738
+        edge_list:
+        - is_defined_by: KBA
+          negated: true
+          evidence_type: ECO:0000220
+          attribute_list:
+          - name: Cell type limitation
+            type: localization
+            value: MFC cells
+            url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+          - name: Cell type limitation
+            type: localization
+            value: MFC cells
+            url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+          confidence: 0.99
+          provided_by: OMIM
+          qualifiers: ECO:0000220
+          target_id: https://www.uniprot.org/uniprot/P00738
+          source_id: http://omim.org/entry/603903
+          type: affects
+          relation: affects
+          publications: PubMed:12345562
+        - is_defined_by: KBA
+          negated: true
+          evidence_type: ECO:0000220
+          attribute_list:
+          - name: Cell type limitation
+            type: localization
+            value: MFC cells
+            url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+          - name: Cell type limitation
+            type: localization
+            value: MFC cells
+            url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+          confidence: 0.99
+          provided_by: OMIM
+          qualifiers: ECO:0000220
+          target_id: https://www.uniprot.org/uniprot/P00738
+          source_id: http://omim.org/entry/603903
+          type: affects
+          relation: affects
+          publications: PubMed:12345562
+      properties:
+        node_list:
+          items:
+            $ref: '#/components/schemas/Node'
+          type: array
+        edge_list:
+          items:
+            $ref: '#/components/schemas/Edge'
+          type: array
+      type: object
+    Question:
+      example:
+        language: English
+        text: what genetic conditions offer protection against malaria
+      properties:
+        text:
+          description: Free text question
+          example: what genetic conditions offer protection against malaria
+          type: string
+        language:
+          description: Human language in which the question is posed
+          enum:
+          - English
+          example: English
+          type: string
+      type: object
+    Edge:
+      description: An edge in the thought subgraph linking two nodes
+      example:
+        is_defined_by: KBA
+        negated: true
+        evidence_type: ECO:0000220
+        attribute_list:
+        - name: Cell type limitation
+          type: localization
+          value: MFC cells
+          url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+        - name: Cell type limitation
+          type: localization
+          value: MFC cells
+          url: https://www.ncbi.nlm.nih.gov/pubmed/29309293
+        confidence: 0.99
+        provided_by: OMIM
+        qualifiers: ECO:0000220
+        target_id: https://www.uniprot.org/uniprot/P00738
+        source_id: http://omim.org/entry/603903
+        type: affects
+        relation: affects
+        publications: PubMed:12345562
+      properties:
+        type:
+          description: Higher-level relationship type of this edge
+          example: affects
+          type: string
+        relation:
+          description: Lower-level relationship type of this edge
+          example: affects
+          type: string
+        source_id:
+          description: Corresponds to the @id of source node of this edge
+          example: http://omim.org/entry/603903
+          type: string
+        target_id:
+          description: Corresponds to the @id of target node of this edge
+          example: https://www.uniprot.org/uniprot/P00738
+          type: string
+        is_defined_by:
+          description: A CURIE/URI for the translator group that made the KG
+          example: KBA
+          type: string
+        provided_by:
+          description: A CURIE/URI for the knowledge source that defined this edge
+          example: OMIM
+          type: string
+        confidence:
+          description: Confidence metric for this edge, a value 0.0 (no confidence) and 1.0 (highest confidence)
+          example: 0.99
+          format: float
+          type: number
+        publications:
+          description: A CURIE/URI for publications associated with this edge
+          example: PubMed:12345562
+          type: string
+        evidence_type:
+          description: A CURIE/URI for class of evidence supporting the statement made in an edge - typically a class from the ECO ontology
+          example: ECO:0000220
+          type: string
+        qualifiers:
+          description: Terms representing qualifiers that modify or qualify the meaning of the statement made in an edge
+          example: ECO:0000220
+          type: string
+        negated:
+          description: Boolean that if set to true, indicates the edge statement is negated i.e. is not true
+          example: true
+          type: boolean
+        attribute_list:
+          description: A list of additional attributes for this edge
+          items:
+            $ref: '#/components/schemas/Edge_attribute'
+          type: array
+      type: object
+    ResultFeedback:
+      description: Feedback for one result
+      example:
+        feedback_list:
+        - commenter_id: 1
+          datetime: 2018-05-08 12:00
+          rating_id: 1
+          result_id: http://kba.ncats.io/result/2345
+          expertise_level_id: 1
+          comment: This is a great result because...
+          id: http://kba.ncats.io/result/2345/feedback/4567
+          commenter_full_name: John Smith
+        - commenter_id: 1
+          datetime: 2018-05-08 12:00
+          rating_id: 1
+          result_id: http://kba.ncats.io/result/2345
+          expertise_level_id: 1
+          comment: This is a great result because...
+          id: http://kba.ncats.io/result/2345/feedback/4567
+          commenter_full_name: John Smith
+      properties:
+        feedback_list:
+          items:
+            $ref: '#/components/schemas/Feedback'
+          type: array
+      type: object
