@@ -11,7 +11,10 @@
 """
 
 
-from __future__ import absolute_import
+from __future__ import absolute_import, print_function
+
+import sys
+import json
 
 import unittest
 
@@ -30,35 +33,42 @@ class TestMetadataApi(unittest.TestCase):
         pass
 
     def test_get_beacons(self):
-        """Test case for get_beacons
-
         """
-        pass
+        Test case for get_beacons
+        """
+        beacon_list = self.api.get_beacons()
+        for ckb in beacon_list:
+            print(ckb, sep='\n', end='\n', file=sys.stderr)
 
     def test_get_concept_categories(self):
-        """Test case for get_concept_categories
-
         """
-        pass
+        Test case for get_concept_categories
+        """
+        categories = self.api.get_concept_categories()
+        for cc in categories:
+            print(cc, sep='\n', end='\n', file=sys.stderr)
 
     def test_get_errors(self):
-        """Test case for get_errors
-
+        """
+        Test case for get_errors
         """
         pass
 
     def test_get_knowledge_map(self):
-        """Test case for get_knowledge_map
-
         """
-        pass
+        Test case for get_knowledge_map
+        """
+        knowledge_map = self.api.get_knowledge_map(_request_timeout=(600,600))
+        for km in knowledge_map:
+            print(km, sep='\n', end='\n', file=sys.stderr)
 
     def test_get_predicates(self):
-        """Test case for get_predicates
-
         """
-        pass
-
+        Test case for get_predicates
+        """
+        predicates = self.api.get_predicates(_request_timeout=(300,300))
+        for p in predicates:
+            print(p, sep='\n', end='\n', file=sys.stderr)
 
 if __name__ == '__main__':
     unittest.main()
