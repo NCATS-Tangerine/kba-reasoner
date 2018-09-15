@@ -10,7 +10,7 @@
 IGNORE_LIST=""
 
 # This is where we will download openapi-generator-cli.jar from
-SWAGGER_JAR_LOCATION="http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/3.2.3/openapi-generator-cli-3.2.3.jar -O .openapi-generator/openapi-generator-cli.jar"
+OPENAPI_GENERATOR_JAR_LOCATION="http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/3.2.3/openapi-generator-cli-3.2.3.jar -O .openapi-generator/openapi-generator-cli.jar"
 
 # Here we define the names of the directories that the server and client projects will be generated into
 SERVER_OUTPUT_DIR="server"
@@ -110,7 +110,7 @@ else
 	mkdir -p .openapi-generator
 
 	# wget creates a file whether or not it's able to download it, so if there's a download error we want to delete the file that was created.
-	wget $OPENAPI_GENERATOR_JAR_LOCATION|| rm -f .openapi-generator/openapi-generator-cli.jar
+	wget $OPENAPI_GENERATOR_JAR_LOCATION || rm -f .openapi-generator/openapi-generator-cli.jar
 
 	# If download failed then exit
 	if [ ! -f .openapi-generator/openapi-generator-cli.jar ]; then
