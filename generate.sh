@@ -1,17 +1,15 @@
 #!/bin/sh
 # This script downloads openapi-generator-cli.jar into a hidden directory and then uses it to generate a Java project stub
-# https://github.com/swagger-api/swagger-codegen
+# https://github.com/OpenAPITools/openapi-generator
 
 #############################
 ###       Constants       ###
 #############################
 
 # This is a whitespace (space or tab) delimited list of lines that will be added to .openapi-generator-ignore prior to code generation, if they are not already present.
-IGNORE_LIST="Swagger2SpringBoot.java	README.md"
+IGNORE_LIST=""
 
 # This is where we will download openapi-generator-cli.jar from
-# (latest release 2.*.* version (keep an eye on 3.*.* release candidates for the future)
-
 SWAGGER_JAR_LOCATION="http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/3.2.3/openapi-generator-cli-3.2.3.jar -O .openapi-generator/openapi-generator-cli.jar"
 
 # Here we define the names of the directories that the server and client projects will be generated into
@@ -28,7 +26,7 @@ PACKAGE_VERSION="1.1.1"
 
 # Called when there is an error with how the script is being used
 usage() {
-echo "usage: $(basename "$0") <command> <specification> -- uses swagger to generate a Java project stub
+echo "usage: $(basename "$0") <command> <specification> -- uses OpenAPI Generator to generate a python project stub
 
 	command:
 		server		to generate a server
@@ -112,7 +110,7 @@ else
 	mkdir -p .openapi-generator
 
 	# wget creates a file whether or not it's able to download it, so if there's a download error we want to delete the file that was created.
-	wget $SWAGGER_JAR_LOCATION || rm -f .openapi-generator/openapi-generator-cli.jar
+	wget $OPENAPI_GENERATOR_JAR_LOCATION|| rm -f .openapi-generator/openapi-generator-cli.jar
 
 	# If download failed then exit
 	if [ ! -f .openapi-generator/openapi-generator-cli.jar ]; then
