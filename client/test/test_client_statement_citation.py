@@ -32,7 +32,7 @@ class TestClientStatementCitation(unittest.TestCase):
     def testClientStatementCitation(self):
         """Test ClientStatementCitation"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_statement_citation.ClientStatementCitation()  # noqa: E501
+        model = kba_client.models.client_statement_citation.ClientStatementCitation()  # noqa: E501
         pass
 
 

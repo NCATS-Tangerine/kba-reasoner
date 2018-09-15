@@ -32,7 +32,7 @@ class TestClientBeaconPredicate(unittest.TestCase):
     def testClientBeaconPredicate(self):
         """Test ClientBeaconPredicate"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_beacon_predicate.ClientBeaconPredicate()  # noqa: E501
+        model = kba_client.models.client_beacon_predicate.ClientBeaconPredicate()  # noqa: E501
         pass
 
 

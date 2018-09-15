@@ -32,7 +32,7 @@ class TestClientConceptCategoriesByBeacon(unittest.TestCase):
     def testClientConceptCategoriesByBeacon(self):
         """Test ClientConceptCategoriesByBeacon"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_concept_categories_by_beacon.ClientConceptCategoriesByBeacon()  # noqa: E501
+        model = kba_client.models.client_concept_categories_by_beacon.ClientConceptCategoriesByBeacon()  # noqa: E501
         pass
 
 

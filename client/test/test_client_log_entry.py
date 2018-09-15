@@ -32,7 +32,7 @@ class TestClientLogEntry(unittest.TestCase):
     def testClientLogEntry(self):
         """Test ClientLogEntry"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_log_entry.ClientLogEntry()  # noqa: E501
+        model = kba_client.models.client_log_entry.ClientLogEntry()  # noqa: E501
         pass
 
 

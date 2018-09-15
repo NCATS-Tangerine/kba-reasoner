@@ -32,7 +32,7 @@ class TestClientConceptsQuery(unittest.TestCase):
     def testClientConceptsQuery(self):
         """Test ClientConceptsQuery"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_concepts_query.ClientConceptsQuery()  # noqa: E501
+        model = kba_client.models.client_concepts_query.ClientConceptsQuery()  # noqa: E501
         pass
 
 

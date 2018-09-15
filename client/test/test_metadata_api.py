@@ -12,6 +12,7 @@
 
 
 from __future__ import absolute_import
+from sys import stderr
 
 import unittest
 
@@ -33,7 +34,9 @@ class TestMetadataApi(unittest.TestCase):
         """Test case for get_beacons
 
         """
-        pass
+        beacons = self.api.get_beacons()
+        for beacon in beacons:
+            print(beacon,sep='',end='',file=stderr)
 
     def test_get_concept_categories(self):
         """Test case for get_concept_categories

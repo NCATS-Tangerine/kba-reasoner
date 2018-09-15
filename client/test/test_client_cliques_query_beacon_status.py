@@ -32,7 +32,7 @@ class TestClientCliquesQueryBeaconStatus(unittest.TestCase):
     def testClientCliquesQueryBeaconStatus(self):
         """Test ClientCliquesQueryBeaconStatus"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_cliques_query_beacon_status.ClientCliquesQueryBeaconStatus()  # noqa: E501
+        model = kba_client.models.client_cliques_query_beacon_status.ClientCliquesQueryBeaconStatus()  # noqa: E501
         pass
 
 

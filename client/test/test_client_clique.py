@@ -32,7 +32,7 @@ class TestClientClique(unittest.TestCase):
     def testClientClique(self):
         """Test ClientClique"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_clique.ClientClique()  # noqa: E501
+        model = kba_client.models.client_clique.ClientClique()  # noqa: E501
         pass
 
 

@@ -32,7 +32,7 @@ class TestClientKnowledgeMapObject(unittest.TestCase):
     def testClientKnowledgeMapObject(self):
         """Test ClientKnowledgeMapObject"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_knowledge_map_object.ClientKnowledgeMapObject()  # noqa: E501
+        model = kba_client.models.client_knowledge_map_object.ClientKnowledgeMapObject()  # noqa: E501
         pass
 
 

@@ -32,7 +32,7 @@ class TestClientPredicate(unittest.TestCase):
     def testClientPredicate(self):
         """Test ClientPredicate"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_predicate.ClientPredicate()  # noqa: E501
+        model = kba_client.models.client_predicate.ClientPredicate()  # noqa: E501
         pass
 
 

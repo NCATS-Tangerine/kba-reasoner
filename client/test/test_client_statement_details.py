@@ -32,7 +32,7 @@ class TestClientStatementDetails(unittest.TestCase):
     def testClientStatementDetails(self):
         """Test ClientStatementDetails"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = kba_client.models.client_statement_details.ClientStatementDetails()  # noqa: E501
+        model = kba_client.models.client_statement_details.ClientStatementDetails()  # noqa: E501
         pass
 
 
