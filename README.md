@@ -3,7 +3,8 @@
 Install and run without docker:
 
 ```
-virtualenv -p python3.6 venv
+# Python 3.6 or better can be used
+virtualenv -p python3.7 venv
 source venv/bin/activate
 make install
 make run
