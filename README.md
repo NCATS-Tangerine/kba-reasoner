@@ -3,6 +3,8 @@
 Install and run without docker:
 
 ```
+virtualenv -p python3.6 venv
+source venv/bin/activate
 make install
 make run
 ```
