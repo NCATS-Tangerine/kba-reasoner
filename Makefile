@@ -3,9 +3,9 @@ download-swagger-ui:
 
 install:
 	make download-swagger-ui
-	pip install swagger_ui_bundle-0.0.3-py3-none-any.whl
-	pip install -r requirements.txt
-	pip install -e .
+	python -m pip install swagger_ui_bundle-0.0.3-py3-none-any.whl
+	python -m pip install -r requirements.txt
+	python -m pip install -e .
 
 run:
 	cd server && python -m openapi_server
