@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kba_client
-from kba_client.models.client_concept_categories_by_beacon import ClientConceptCategoriesByBeacon  # noqa: E501
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.models.client_concept_categories_by_beacon import ClientConceptCategoriesByBeacon  # noqa: E501
+from openapi_client.rest import ApiException
 
 
 class TestClientConceptCategoriesByBeacon(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestClientConceptCategoriesByBeacon(unittest.TestCase):
     def testClientConceptCategoriesByBeacon(self):
         """Test ClientConceptCategoriesByBeacon"""
         # FIXME: construct object with mandatory attributes with example values
-        model = kba_client.models.client_concept_categories_by_beacon.ClientConceptCategoriesByBeacon()  # noqa: E501
+        # model = openapi_client.models.client_concept_categories_by_beacon.ClientConceptCategoriesByBeacon()  # noqa: E501
         pass
 
 

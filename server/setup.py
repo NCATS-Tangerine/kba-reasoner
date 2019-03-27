@@ -3,8 +3,8 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "reasoner_server"
-VERSION = "1.1.1"
+NAME = "openapi_server"
+VERSION = "1.0.0"
 
 # To install the library, run the following
 #
@@ -13,7 +13,11 @@ VERSION = "1.1.1"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["connexion"]
+REQUIRES = [
+    "connexion==2.0.0",
+    "swagger-ui-bundle==0.0.2",
+    "python_dateutil==2.6.0"
+]
 
 setup(
     name=NAME,
@@ -27,9 +31,8 @@ setup(
     package_data={'': ['openapi/openapi.yaml']},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['reasoner_server=reasoner_server.__main__:main']},
+        'console_scripts': ['openapi_server=openapi_server.__main__:main']},
     long_description="""\
     NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API
     """
 )
-

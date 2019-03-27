@@ -13,8 +13,8 @@
 
 from setuptools import setup, find_packages  # noqa: H301
 
-NAME = "kba-reasoner"
-VERSION = "1.1.1"
+NAME = "openapi-client"
+VERSION = "1.0.0"
 # To install the library, run the following
 #
 # python setup.py install

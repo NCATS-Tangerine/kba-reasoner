@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kba_client
-from kba_client.models.client_beacon_predicate import ClientBeaconPredicate  # noqa: E501
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.models.client_beacon_predicate import ClientBeaconPredicate  # noqa: E501
+from openapi_client.rest import ApiException
 
 
 class TestClientBeaconPredicate(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestClientBeaconPredicate(unittest.TestCase):
     def testClientBeaconPredicate(self):
         """Test ClientBeaconPredicate"""
         # FIXME: construct object with mandatory attributes with example values
-        model = kba_client.models.client_beacon_predicate.ClientBeaconPredicate()  # noqa: E501
+        # model = openapi_client.models.client_beacon_predicate.ClientBeaconPredicate()  # noqa: E501
         pass
 
 

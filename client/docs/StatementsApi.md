@@ -1,4 +1,4 @@
-# kba_client.StatementsApi
+# openapi_client.StatementsApi
 
 All URIs are relative to *https://kba.ncats.io*
 
@@ -21,12 +21,12 @@ Retrieves a details relating to a specified concept-relationship statement inclu
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = kba_client.StatementsApi()
+api_instance = openapi_client.StatementsApi()
 statement_id = 'statement_id_example' # str | (url-encoded) CURIE identifier of the concept-relationship statement (\"assertion\", \"claim\") for which associated evidence is sought, e.g. kbs:Q420626_P2175_Q126691 
 keywords = ['keywords_example'] # list[str] | an array of keywords or substrings against which to filter a reference label (e.g. title) statement evidence citation array. (optional)
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of statement.evidence array entries. Defaults to 1.  (optional)
@@ -74,12 +74,12 @@ Given a specification [CURIE-encoded](https://www.w3.org/TR/curie/) a 'source' c
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = kba_client.StatementsApi()
+api_instance = openapi_client.StatementsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of statement query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose statements are to be retrieved  (optional)
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of query results. Defaults to '1'.  (optional)
@@ -127,12 +127,12 @@ Retrieves the status of a given query about the statements in the system
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = kba_client.StatementsApi()
+api_instance = openapi_client.StatementsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of statements  query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose status is being polled (if omitted, then the status of all beacons from the query are returned)  (optional)
 
@@ -176,12 +176,12 @@ Posts a query to retrieve concept-relations where either the subject or object c
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
 # create an instance of the API class
-api_instance = kba_client.StatementsApi()
+api_instance = openapi_client.StatementsApi()
 source = 'source_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier of the  exactly matching 'source' clique, cliques as identified by other endpoints of the beacon aggregator API.  
 relations = ['relations_example'] # list[str] | a subset (array) of identifiers of predicate relation identifiers with which to constrain the statement relations retrieved  for the given query seed concept. The predicate ids sent should  be as published by the beacon-aggregator by the /predicates API endpoint.  (optional)
 target = 'target_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier of the  exactly matching 'target' clique, cliques as identified by other endpoints of the beacon aggregator API.   (optional)

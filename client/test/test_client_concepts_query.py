@@ -15,9 +15,9 @@ from __future__ import absolute_import
 
 import unittest
 
-import kba_client
-from kba_client.models.client_concepts_query import ClientConceptsQuery  # noqa: E501
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.models.client_concepts_query import ClientConceptsQuery  # noqa: E501
+from openapi_client.rest import ApiException
 
 
 class TestClientConceptsQuery(unittest.TestCase):
@@ -32,7 +32,7 @@ class TestClientConceptsQuery(unittest.TestCase):
     def testClientConceptsQuery(self):
         """Test ClientConceptsQuery"""
         # FIXME: construct object with mandatory attributes with example values
-        model = kba_client.models.client_concepts_query.ClientConceptsQuery()  # noqa: E501
+        # model = openapi_client.models.client_concepts_query.ClientConceptsQuery()  # noqa: E501
         pass
 
 
