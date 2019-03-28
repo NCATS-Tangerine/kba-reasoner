@@ -17,7 +17,7 @@ tags:
 - description: Query reasoner using a predefined question type
   externalDocs:
     description: Documentation for the reasoner query function
-    url: http://reasonerhost.ncats.io/overview.html#query
+    url: https://rtx.ncats.io/beta/overview.html#query
   name: query
 - description: Request stored messages and feedback for messages
   externalDocs:
@@ -27,7 +27,7 @@ tags:
 - description: Request stored results and feedback for results
   externalDocs:
     description: Documentation for the reasoner result function
-    url: http://reasonerhost.ncats.io/overview.html#result
+    url: https://rtx.ncats.io/beta/overview.html#result
   name: result
 paths:
   /query:
