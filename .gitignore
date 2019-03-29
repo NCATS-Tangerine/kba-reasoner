@@ -8,6 +8,9 @@
 # ignore local configuration files
 config.yaml
 
+# Ignore the swagger ui bundle
+swagger_ui_bundle-0.0.3-py3-none-any.whl
+
 py3*/
 py2*/
 

@@ -15,4 +15,4 @@ def query(request_body):  # noqa: E501
 
     :rtype: Message
     """
-    return 'do some magic!'
+    return 'Hey! What kind of question was that?'
