@@ -8,15 +8,15 @@
 # ignore local configuration files
 config.yaml
 
-py3*/
-py2*/
+# Ignore the swagger ui bundle
+swagger_ui_bundle-0.0.3-py3-none-any.whl
 
 ###################
 # Generic ignores #
 ###################
 
 # PyCharm IDE related exclusions
-.idea
+.idea/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -101,7 +101,7 @@ celerybeat-schedule
 # SageMath parsed files
 *.sage.py
 
-# Environments
+# Virtual Environments
 .env
 .venv
 env/
@@ -109,6 +109,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+py*/
 
 # Spyder project settings
 .spyderproject
