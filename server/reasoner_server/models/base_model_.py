@@ -3,7 +3,7 @@ import pprint
 import six
 import typing
 
-from reasoner_server import util
+from openapi_server import util
 
 T = typing.TypeVar('T')
 

@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "reasoner_server"
-VERSION = "1.1.1"
+VERSION = "0.9.2"
 
 # To install the library, run the following
 #
@@ -24,12 +24,12 @@ setup(
     keywords=["OpenAPI", "NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator"],
     install_requires=REQUIRES,
     packages=find_packages(),
-    package_data={'': ['openapi/openapi.yaml']},
+    package_data={'': ['reasoner_api/API/TranslatorReasonersAPI.yaml']},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['reasoner_server=reasoner_server.__main__:main']},
+        'console_scripts': ['reasoner_server=reasoner_server.__main__:main']
+    },
     long_description="""\
     NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API
     """
 )
-

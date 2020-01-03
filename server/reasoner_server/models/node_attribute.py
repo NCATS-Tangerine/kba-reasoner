@@ -5,8 +5,8 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from reasoner_server.models.base_model_ import Model
-from reasoner_server import util
+from openapi_server.models.base_model_ import Model
+from openapi_server import util
 
 
 class NodeAttribute(Model):
@@ -15,7 +15,7 @@ class NodeAttribute(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, type: str=None, name: str=None, value: str=None, url: str=None):  # noqa: E501
+    def __init__(self, type=None, name=None, value=None, url=None):  # noqa: E501
         """NodeAttribute - a model defined in OpenAPI
 
         :param type: The type of this NodeAttribute.  # noqa: E501
@@ -52,13 +52,13 @@ class NodeAttribute(Model):
 
         :param dikt: A dict.
         :type: dict
-        :return: The Node_attribute of this NodeAttribute.  # noqa: E501
+        :return: The NodeAttribute of this NodeAttribute.  # noqa: E501
         :rtype: NodeAttribute
         """
         return util.deserialize_model(dikt, cls)
 
     @property
-    def type(self) -> str:
+    def type(self):
         """Gets the type of this NodeAttribute.
 
         Entity type of this attribute  # noqa: E501
@@ -69,7 +69,7 @@ class NodeAttribute(Model):
         return self._type
 
     @type.setter
-    def type(self, type: str):
+    def type(self, type):
         """Sets the type of this NodeAttribute.
 
         Entity type of this attribute  # noqa: E501
@@ -81,7 +81,7 @@ class NodeAttribute(Model):
         self._type = type
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this NodeAttribute.
 
         Formal name of the attribute  # noqa: E501
@@ -92,7 +92,7 @@ class NodeAttribute(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this NodeAttribute.
 
         Formal name of the attribute  # noqa: E501
@@ -104,7 +104,7 @@ class NodeAttribute(Model):
         self._name = name
 
     @property
-    def value(self) -> str:
+    def value(self):
         """Gets the value of this NodeAttribute.
 
         Value of the attribute  # noqa: E501
@@ -115,7 +115,7 @@ class NodeAttribute(Model):
         return self._value
 
     @value.setter
-    def value(self, value: str):
+    def value(self, value):
         """Sets the value of this NodeAttribute.
 
         Value of the attribute  # noqa: E501
@@ -127,7 +127,7 @@ class NodeAttribute(Model):
         self._value = value
 
     @property
-    def url(self) -> str:
+    def url(self):
         """Gets the url of this NodeAttribute.
 
         A URL corresponding to this attribute  # noqa: E501
@@ -138,7 +138,7 @@ class NodeAttribute(Model):
         return self._url
 
     @url.setter
-    def url(self, url: str):
+    def url(self, url):
         """Sets the url of this NodeAttribute.
 
         A URL corresponding to this attribute  # noqa: E501

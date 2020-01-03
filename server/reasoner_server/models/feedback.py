@@ -5,8 +5,8 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from reasoner_server.models.base_model_ import Model
-from reasoner_server import util
+from openapi_server.models.base_model_ import Model
+from openapi_server import util
 
 
 class Feedback(Model):
@@ -15,7 +15,7 @@ class Feedback(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, result_id: str=None, expertise_level_id: int=None, rating_id: int=None, commenter_id: int=None, commenter_full_name: str=None, datetime: str=None, comment: str=None):  # noqa: E501
+    def __init__(self, id=None, result_id=None, expertise_level_id=None, rating_id=None, commenter_id=None, commenter_full_name=None, datetime=None, comment=None):  # noqa: E501
         """Feedback - a model defined in OpenAPI
 
         :param id: The id of this Feedback.  # noqa: E501
@@ -78,7 +78,7 @@ class Feedback(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this Feedback.
 
         URI for this feedback item  # noqa: E501
@@ -89,7 +89,7 @@ class Feedback(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this Feedback.
 
         URI for this feedback item  # noqa: E501
@@ -101,7 +101,7 @@ class Feedback(Model):
         self._id = id
 
     @property
-    def result_id(self) -> str:
+    def result_id(self):
         """Gets the result_id of this Feedback.
 
         URI for the result that this feedback corresponds to  # noqa: E501
@@ -112,7 +112,7 @@ class Feedback(Model):
         return self._result_id
 
     @result_id.setter
-    def result_id(self, result_id: str):
+    def result_id(self, result_id):
         """Sets the result_id of this Feedback.
 
         URI for the result that this feedback corresponds to  # noqa: E501
@@ -124,7 +124,7 @@ class Feedback(Model):
         self._result_id = result_id
 
     @property
-    def expertise_level_id(self) -> int:
+    def expertise_level_id(self):
         """Gets the expertise_level_id of this Feedback.
 
         Integer identifier of the claimed expertise level  # noqa: E501
@@ -135,7 +135,7 @@ class Feedback(Model):
         return self._expertise_level_id
 
     @expertise_level_id.setter
-    def expertise_level_id(self, expertise_level_id: int):
+    def expertise_level_id(self, expertise_level_id):
         """Sets the expertise_level_id of this Feedback.
 
         Integer identifier of the claimed expertise level  # noqa: E501
@@ -147,7 +147,7 @@ class Feedback(Model):
         self._expertise_level_id = expertise_level_id
 
     @property
-    def rating_id(self) -> int:
+    def rating_id(self):
         """Gets the rating_id of this Feedback.
 
         Integer identifier of the applied rating  # noqa: E501
@@ -158,7 +158,7 @@ class Feedback(Model):
         return self._rating_id
 
     @rating_id.setter
-    def rating_id(self, rating_id: int):
+    def rating_id(self, rating_id):
         """Sets the rating_id of this Feedback.
 
         Integer identifier of the applied rating  # noqa: E501
@@ -170,7 +170,7 @@ class Feedback(Model):
         self._rating_id = rating_id
 
     @property
-    def commenter_id(self) -> int:
+    def commenter_id(self):
         """Gets the commenter_id of this Feedback.
 
         Integer identifier of the commenter  # noqa: E501
@@ -181,7 +181,7 @@ class Feedback(Model):
         return self._commenter_id
 
     @commenter_id.setter
-    def commenter_id(self, commenter_id: int):
+    def commenter_id(self, commenter_id):
         """Sets the commenter_id of this Feedback.
 
         Integer identifier of the commenter  # noqa: E501
@@ -193,7 +193,7 @@ class Feedback(Model):
         self._commenter_id = commenter_id
 
     @property
-    def commenter_full_name(self) -> str:
+    def commenter_full_name(self):
         """Gets the commenter_full_name of this Feedback.
 
         Full name of the commenter  # noqa: E501
@@ -204,7 +204,7 @@ class Feedback(Model):
         return self._commenter_full_name
 
     @commenter_full_name.setter
-    def commenter_full_name(self, commenter_full_name: str):
+    def commenter_full_name(self, commenter_full_name):
         """Sets the commenter_full_name of this Feedback.
 
         Full name of the commenter  # noqa: E501
@@ -216,7 +216,7 @@ class Feedback(Model):
         self._commenter_full_name = commenter_full_name
 
     @property
-    def datetime(self) -> str:
+    def datetime(self):
         """Gets the datetime of this Feedback.
 
         Datetime when the feedback was provided  # noqa: E501
@@ -227,7 +227,7 @@ class Feedback(Model):
         return self._datetime
 
     @datetime.setter
-    def datetime(self, datetime: str):
+    def datetime(self, datetime):
         """Sets the datetime of this Feedback.
 
         Datetime when the feedback was provided  # noqa: E501
@@ -239,7 +239,7 @@ class Feedback(Model):
         self._datetime = datetime
 
     @property
-    def comment(self) -> str:
+    def comment(self):
         """Gets the comment of this Feedback.
 
         A free text comment about this result  # noqa: E501
@@ -250,7 +250,7 @@ class Feedback(Model):
         return self._comment
 
     @comment.setter
-    def comment(self, comment: str):
+    def comment(self, comment):
         """Sets the comment of this Feedback.
 
         A free text comment about this result  # noqa: E501

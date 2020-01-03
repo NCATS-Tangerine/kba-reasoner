@@ -5,9 +5,8 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from reasoner_server.models.base_model_ import Model
-from reasoner_server.models.node_attribute import NodeAttribute  # noqa: F401,E501
-from reasoner_server import util
+from openapi_server.models.base_model_ import Model
+from openapi_server import util
 
 
 class Node(Model):
@@ -16,7 +15,7 @@ class Node(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, id: str=None, uri: str=None, name: str=None, type: str=None, description: str=None, symbol: str=None, node_attributes: List[NodeAttribute]=None):  # noqa: E501
+    def __init__(self, id=None, uri=None, name=None, type=None, description=None, symbol=None, node_attributes=None):  # noqa: E501
         """Node - a model defined in OpenAPI
 
         :param id: The id of this Node.  # noqa: E501
@@ -26,7 +25,7 @@ class Node(Model):
         :param name: The name of this Node.  # noqa: E501
         :type name: str
         :param type: The type of this Node.  # noqa: E501
-        :type type: str
+        :type type: List[str]
         :param description: The description of this Node.  # noqa: E501
         :type description: str
         :param symbol: The symbol of this Node.  # noqa: E501
@@ -38,7 +37,7 @@ class Node(Model):
             'id': str,
             'uri': str,
             'name': str,
-            'type': str,
+            'type': List[str],
             'description': str,
             'symbol': str,
             'node_attributes': List[NodeAttribute]
@@ -74,7 +73,7 @@ class Node(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def id(self) -> str:
+    def id(self):
         """Gets the id of this Node.
 
         CURIE identifier for this node  # noqa: E501
@@ -85,7 +84,7 @@ class Node(Model):
         return self._id
 
     @id.setter
-    def id(self, id: str):
+    def id(self, id):
         """Sets the id of this Node.
 
         CURIE identifier for this node  # noqa: E501
@@ -93,11 +92,13 @@ class Node(Model):
         :param id: The id of this Node.
         :type id: str
         """
+        if id is None:
+            raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
 
     @property
-    def uri(self) -> str:
+    def uri(self):
         """Gets the uri of this Node.
 
         URI identifier for this node\"  # noqa: E501
@@ -108,7 +109,7 @@ class Node(Model):
         return self._uri
 
     @uri.setter
-    def uri(self, uri: str):
+    def uri(self, uri):
         """Sets the uri of this Node.
 
         URI identifier for this node\"  # noqa: E501
@@ -120,7 +121,7 @@ class Node(Model):
         self._uri = uri
 
     @property
-    def name(self) -> str:
+    def name(self):
         """Gets the name of this Node.
 
         Formal name of the entity  # noqa: E501
@@ -131,7 +132,7 @@ class Node(Model):
         return self._name
 
     @name.setter
-    def name(self, name: str):
+    def name(self, name):
         """Sets the name of this Node.
 
         Formal name of the entity  # noqa: E501
@@ -143,30 +144,30 @@ class Node(Model):
         self._name = name
 
     @property
-    def type(self) -> str:
+    def type(self):
         """Gets the type of this Node.
 
         Entity type of this node (e.g., protein, disease, etc.)  # noqa: E501
 
         :return: The type of this Node.
-        :rtype: str
+        :rtype: List[str]
         """
         return self._type
 
     @type.setter
-    def type(self, type: str):
+    def type(self, type):
         """Sets the type of this Node.
 
         Entity type of this node (e.g., protein, disease, etc.)  # noqa: E501
 
         :param type: The type of this Node.
-        :type type: str
+        :type type: List[str]
         """
 
         self._type = type
 
     @property
-    def description(self) -> str:
+    def description(self):
         """Gets the description of this Node.
 
         One to three sentences of description/definition of this entity  # noqa: E501
@@ -177,7 +178,7 @@ class Node(Model):
         return self._description
 
     @description.setter
-    def description(self, description: str):
+    def description(self, description):
         """Sets the description of this Node.
 
         One to three sentences of description/definition of this entity  # noqa: E501
@@ -189,7 +190,7 @@ class Node(Model):
         self._description = description
 
     @property
-    def symbol(self) -> str:
+    def symbol(self):
         """Gets the symbol of this Node.
 
         Short abbreviation or symbol for this entity  # noqa: E501
@@ -200,7 +201,7 @@ class Node(Model):
         return self._symbol
 
     @symbol.setter
-    def symbol(self, symbol: str):
+    def symbol(self, symbol):
         """Sets the symbol of this Node.
 
         Short abbreviation or symbol for this entity  # noqa: E501
@@ -212,7 +213,7 @@ class Node(Model):
         self._symbol = symbol
 
     @property
-    def node_attributes(self) -> List[NodeAttribute]:
+    def node_attributes(self):
         """Gets the node_attributes of this Node.
 
         A list of arbitrary attributes for the node  # noqa: E501
@@ -223,7 +224,7 @@ class Node(Model):
         return self._node_attributes
 
     @node_attributes.setter
-    def node_attributes(self, node_attributes: List[NodeAttribute]):
+    def node_attributes(self, node_attributes):
         """Sets the node_attributes of this Node.
 
         A list of arbitrary attributes for the node  # noqa: E501

@@ -5,9 +5,8 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from reasoner_server.models.base_model_ import Model
-from reasoner_server.models.feedback import Feedback  # noqa: F401,E501
-from reasoner_server import util
+from openapi_server.models.base_model_ import Model
+from openapi_server import util
 
 
 class ResultFeedback(Model):
@@ -16,7 +15,7 @@ class ResultFeedback(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, feedback_list: List[Feedback]=None):  # noqa: E501
+    def __init__(self, feedback_list=None):  # noqa: E501
         """ResultFeedback - a model defined in OpenAPI
 
         :param feedback_list: The feedback_list of this ResultFeedback.  # noqa: E501
@@ -44,9 +43,10 @@ class ResultFeedback(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def feedback_list(self) -> List[Feedback]:
+    def feedback_list(self):
         """Gets the feedback_list of this ResultFeedback.
 
+        List of feedback posts for this result  # noqa: E501
 
         :return: The feedback_list of this ResultFeedback.
         :rtype: List[Feedback]
@@ -54,9 +54,10 @@ class ResultFeedback(Model):
         return self._feedback_list
 
     @feedback_list.setter
-    def feedback_list(self, feedback_list: List[Feedback]):
+    def feedback_list(self, feedback_list):
         """Sets the feedback_list of this ResultFeedback.
 
+        List of feedback posts for this result  # noqa: E501
 
         :param feedback_list: The feedback_list of this ResultFeedback.
         :type feedback_list: List[Feedback]

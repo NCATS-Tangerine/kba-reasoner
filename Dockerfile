@@ -1,22 +1,22 @@
-FROM python:3
+FROM python:3.7
 
 RUN mkdir -p /usr/src
 
-COPY /server /usr/src/server
-COPY /client /usr/src/client
-COPY requirements.txt /usr/src/requirements.txt
-COPY config.yaml /config.yaml
+WORKDIR /usr/src
 
-# include --no-cache-dir flag when development finalizes?
-RUN pip install --upgrade pip && \
-    pip install -r /usr/src/requirements.txt && \
-    pip install /usr/src/server/ && \
-    pip install /usr/src/client/ 
+COPY reasoner reasoner
+COPY server server
+COPY client client
+COPY requirements.txt requirements.txt
+COPY setup.py setup.py
+
+RUN pip install --no-cache-dir -r requirements.txt && \
+    pip install --no-cache-dir .
 
 WORKDIR /usr/src/server
 
 EXPOSE 8080
 
-ENTRYPOINT ["python3"]
+ENTRYPOINT ["python"]
 
 CMD ["-m", "reasoner_server"]

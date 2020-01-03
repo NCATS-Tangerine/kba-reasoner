@@ -5,9 +5,8 @@ from datetime import date, datetime  # noqa: F401
 
 from typing import List, Dict  # noqa: F401
 
-from reasoner_server.models.base_model_ import Model
-from reasoner_server.models.query_terms import QueryTerms  # noqa: F401,E501
-from reasoner_server import util
+from openapi_server.models.base_model_ import Model
+from openapi_server import util
 
 
 class Query(Model):
@@ -16,86 +15,56 @@ class Query(Model):
     Do not edit the class manually.
     """
 
-    def __init__(self, original_question: str=None, restated_question: str=None, message: str=None, known_query_type_id: str=None, query_type_id: str=None, bypass_cache: str=None, asynchronous: str=None, options: str=None, max_results: int=None, page_size: int=None, page_number: int=None, terms: QueryTerms=None, reasoner_ids: List[str]=None, query_plan: List[object]=None):  # noqa: E501
+    def __init__(self, bypass_cache=None, asynchronous=None, max_results=None, page_size=None, page_number=None, reasoner_ids=None, query_message=None, previous_message_processing_plan=None):  # noqa: E501
         """Query - a model defined in OpenAPI
 
-        :param original_question: The original_question of this Query.  # noqa: E501
-        :type original_question: str
-        :param restated_question: The restated_question of this Query.  # noqa: E501
-        :type restated_question: str
-        :param message: The message of this Query.  # noqa: E501
-        :type message: str
-        :param known_query_type_id: The known_query_type_id of this Query.  # noqa: E501
-        :type known_query_type_id: str
-        :param query_type_id: The query_type_id of this Query.  # noqa: E501
-        :type query_type_id: str
         :param bypass_cache: The bypass_cache of this Query.  # noqa: E501
         :type bypass_cache: str
         :param asynchronous: The asynchronous of this Query.  # noqa: E501
         :type asynchronous: str
-        :param options: The options of this Query.  # noqa: E501
-        :type options: str
         :param max_results: The max_results of this Query.  # noqa: E501
         :type max_results: int
         :param page_size: The page_size of this Query.  # noqa: E501
         :type page_size: int
         :param page_number: The page_number of this Query.  # noqa: E501
         :type page_number: int
-        :param terms: The terms of this Query.  # noqa: E501
-        :type terms: QueryTerms
         :param reasoner_ids: The reasoner_ids of this Query.  # noqa: E501
         :type reasoner_ids: List[str]
-        :param query_plan: The query_plan of this Query.  # noqa: E501
-        :type query_plan: List[object]
+        :param query_message: The query_message of this Query.  # noqa: E501
+        :type query_message: List[Message]
+        :param previous_message_processing_plan: The previous_message_processing_plan of this Query.  # noqa: E501
+        :type previous_message_processing_plan: List[PreviousMessageProcessingPlan]
         """
         self.openapi_types = {
-            'original_question': str,
-            'restated_question': str,
-            'message': str,
-            'known_query_type_id': str,
-            'query_type_id': str,
             'bypass_cache': str,
             'asynchronous': str,
-            'options': str,
             'max_results': int,
             'page_size': int,
             'page_number': int,
-            'terms': QueryTerms,
             'reasoner_ids': List[str],
-            'query_plan': List[object]
+            'query_message': List[Message],
+            'previous_message_processing_plan': List[PreviousMessageProcessingPlan]
         }
 
         self.attribute_map = {
-            'original_question': 'original_question',
-            'restated_question': 'restated_question',
-            'message': 'message',
-            'known_query_type_id': 'known_query_type_id',
-            'query_type_id': 'query_type_id',
             'bypass_cache': 'bypass_cache',
             'asynchronous': 'asynchronous',
-            'options': 'options',
             'max_results': 'max_results',
             'page_size': 'page_size',
             'page_number': 'page_number',
-            'terms': 'terms',
             'reasoner_ids': 'reasoner_ids',
-            'query_plan': 'query_plan'
+            'query_message': 'query_message',
+            'previous_message_processing_plan': 'previous_message_processing_plan'
         }
 
-        self._original_question = original_question
-        self._restated_question = restated_question
-        self._message = message
-        self._known_query_type_id = known_query_type_id
-        self._query_type_id = query_type_id
         self._bypass_cache = bypass_cache
         self._asynchronous = asynchronous
-        self._options = options
         self._max_results = max_results
         self._page_size = page_size
         self._page_number = page_number
-        self._terms = terms
         self._reasoner_ids = reasoner_ids
-        self._query_plan = query_plan
+        self._query_message = query_message
+        self._previous_message_processing_plan = previous_message_processing_plan
 
     @classmethod
     def from_dict(cls, dikt) -> 'Query':
@@ -109,125 +78,10 @@ class Query(Model):
         return util.deserialize_model(dikt, cls)
 
     @property
-    def original_question(self) -> str:
-        """Gets the original_question of this Query.
-
-        Original question as it was typed in by the user  # noqa: E501
-
-        :return: The original_question of this Query.
-        :rtype: str
-        """
-        return self._original_question
-
-    @original_question.setter
-    def original_question(self, original_question: str):
-        """Sets the original_question of this Query.
-
-        Original question as it was typed in by the user  # noqa: E501
-
-        :param original_question: The original_question of this Query.
-        :type original_question: str
-        """
-
-        self._original_question = original_question
-
-    @property
-    def restated_question(self) -> str:
-        """Gets the restated_question of this Query.
-
-        Restatement of the question as understood by the translator  # noqa: E501
-
-        :return: The restated_question of this Query.
-        :rtype: str
-        """
-        return self._restated_question
-
-    @restated_question.setter
-    def restated_question(self, restated_question: str):
-        """Sets the restated_question of this Query.
-
-        Restatement of the question as understood by the translator  # noqa: E501
-
-        :param restated_question: The restated_question of this Query.
-        :type restated_question: str
-        """
-
-        self._restated_question = restated_question
-
-    @property
-    def message(self) -> str:
-        """Gets the message of this Query.
-
-        Response from the translation engine to the user  # noqa: E501
-
-        :return: The message of this Query.
-        :rtype: str
-        """
-        return self._message
-
-    @message.setter
-    def message(self, message: str):
-        """Sets the message of this Query.
-
-        Response from the translation engine to the user  # noqa: E501
-
-        :param message: The message of this Query.
-        :type message: str
-        """
-
-        self._message = message
-
-    @property
-    def known_query_type_id(self) -> str:
-        """Gets the known_query_type_id of this Query.
-
-        DEPRECATED in favor of query_type_id  # noqa: E501
-
-        :return: The known_query_type_id of this Query.
-        :rtype: str
-        """
-        return self._known_query_type_id
-
-    @known_query_type_id.setter
-    def known_query_type_id(self, known_query_type_id: str):
-        """Sets the known_query_type_id of this Query.
-
-        DEPRECATED in favor of query_type_id  # noqa: E501
-
-        :param known_query_type_id: The known_query_type_id of this Query.
-        :type known_query_type_id: str
-        """
-
-        self._known_query_type_id = known_query_type_id
-
-    @property
-    def query_type_id(self) -> str:
-        """Gets the query_type_id of this Query.
-
-        Identifier for the specific query type  # noqa: E501
-
-        :return: The query_type_id of this Query.
-        :rtype: str
-        """
-        return self._query_type_id
-
-    @query_type_id.setter
-    def query_type_id(self, query_type_id: str):
-        """Sets the query_type_id of this Query.
-
-        Identifier for the specific query type  # noqa: E501
-
-        :param query_type_id: The query_type_id of this Query.
-        :type query_type_id: str
-        """
-
-        self._query_type_id = query_type_id
-
-    @property
-    def bypass_cache(self) -> str:
+    def bypass_cache(self):
         """Gets the bypass_cache of this Query.
 
-        Set to true in order to bypass any possible cached response and try to answer the query over again  # noqa: E501
+        Set to true in order to bypass any possible cached message and try to answer the query over again  # noqa: E501
 
         :return: The bypass_cache of this Query.
         :rtype: str
@@ -235,10 +89,10 @@ class Query(Model):
         return self._bypass_cache
 
     @bypass_cache.setter
-    def bypass_cache(self, bypass_cache: str):
+    def bypass_cache(self, bypass_cache):
         """Sets the bypass_cache of this Query.
 
-        Set to true in order to bypass any possible cached response and try to answer the query over again  # noqa: E501
+        Set to true in order to bypass any possible cached message and try to answer the query over again  # noqa: E501
 
         :param bypass_cache: The bypass_cache of this Query.
         :type bypass_cache: str
@@ -247,10 +101,10 @@ class Query(Model):
         self._bypass_cache = bypass_cache
 
     @property
-    def asynchronous(self) -> str:
+    def asynchronous(self):
         """Gets the asynchronous of this Query.
 
-        Set to true in order to receive an incomplete response_id if the query will take a while. Client can then periodically request that response_id for a status update and eventual complete response  # noqa: E501
+        Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message  # noqa: E501
 
         :return: The asynchronous of this Query.
         :rtype: str
@@ -258,10 +112,10 @@ class Query(Model):
         return self._asynchronous
 
     @asynchronous.setter
-    def asynchronous(self, asynchronous: str):
+    def asynchronous(self, asynchronous):
         """Sets the asynchronous of this Query.
 
-        Set to true in order to receive an incomplete response_id if the query will take a while. Client can then periodically request that response_id for a status update and eventual complete response  # noqa: E501
+        Set to true in order to receive an incomplete message_id if the query will take a while. Client can then periodically request that message_id for a status update and eventual complete message  # noqa: E501
 
         :param asynchronous: The asynchronous of this Query.
         :type asynchronous: str
@@ -270,30 +124,7 @@ class Query(Model):
         self._asynchronous = asynchronous
 
     @property
-    def options(self) -> str:
-        """Gets the options of this Query.
-
-        A string of options that can be sent with the query. Options are tool specific and not stipulated here  # noqa: E501
-
-        :return: The options of this Query.
-        :rtype: str
-        """
-        return self._options
-
-    @options.setter
-    def options(self, options: str):
-        """Sets the options of this Query.
-
-        A string of options that can be sent with the query. Options are tool specific and not stipulated here  # noqa: E501
-
-        :param options: The options of this Query.
-        :type options: str
-        """
-
-        self._options = options
-
-    @property
-    def max_results(self) -> int:
+    def max_results(self):
         """Gets the max_results of this Query.
 
         Maximum number of individual results to return  # noqa: E501
@@ -304,7 +135,7 @@ class Query(Model):
         return self._max_results
 
     @max_results.setter
-    def max_results(self, max_results: int):
+    def max_results(self, max_results):
         """Sets the max_results of this Query.
 
         Maximum number of individual results to return  # noqa: E501
@@ -316,7 +147,7 @@ class Query(Model):
         self._max_results = max_results
 
     @property
-    def page_size(self) -> int:
+    def page_size(self):
         """Gets the page_size of this Query.
 
         Split the results into pages with this number of results each  # noqa: E501
@@ -327,7 +158,7 @@ class Query(Model):
         return self._page_size
 
     @page_size.setter
-    def page_size(self, page_size: int):
+    def page_size(self, page_size):
         """Sets the page_size of this Query.
 
         Split the results into pages with this number of results each  # noqa: E501
@@ -339,7 +170,7 @@ class Query(Model):
         self._page_size = page_size
 
     @property
-    def page_number(self) -> int:
+    def page_number(self):
         """Gets the page_number of this Query.
 
         Page number of results when the number of results exceeds the page_size  # noqa: E501
@@ -350,7 +181,7 @@ class Query(Model):
         return self._page_number
 
     @page_number.setter
-    def page_number(self, page_number: int):
+    def page_number(self, page_number):
         """Sets the page_number of this Query.
 
         Page number of results when the number of results exceeds the page_size  # noqa: E501
@@ -362,28 +193,7 @@ class Query(Model):
         self._page_number = page_number
 
     @property
-    def terms(self) -> QueryTerms:
-        """Gets the terms of this Query.
-
-
-        :return: The terms of this Query.
-        :rtype: QueryTerms
-        """
-        return self._terms
-
-    @terms.setter
-    def terms(self, terms: QueryTerms):
-        """Sets the terms of this Query.
-
-
-        :param terms: The terms of this Query.
-        :type terms: QueryTerms
-        """
-
-        self._terms = terms
-
-    @property
-    def reasoner_ids(self) -> List[str]:
+    def reasoner_ids(self):
         """Gets the reasoner_ids of this Query.
 
         List of reasoners to consult for the query  # noqa: E501
@@ -394,7 +204,7 @@ class Query(Model):
         return self._reasoner_ids
 
     @reasoner_ids.setter
-    def reasoner_ids(self, reasoner_ids: List[str]):
+    def reasoner_ids(self, reasoner_ids):
         """Sets the reasoner_ids of this Query.
 
         List of reasoners to consult for the query  # noqa: E501
@@ -406,24 +216,47 @@ class Query(Model):
         self._reasoner_ids = reasoner_ids
 
     @property
-    def query_plan(self) -> List[object]:
-        """Gets the query_plan of this Query.
+    def query_message(self):
+        """Gets the query_message of this Query.
 
-        List of node types and edge types in a series that constitute a query plan. Experimental.  # noqa: E501
+        Message object that represents the query to be answered  # noqa: E501
 
-        :return: The query_plan of this Query.
-        :rtype: List[object]
+        :return: The query_message of this Query.
+        :rtype: List[Message]
         """
-        return self._query_plan
+        return self._query_message
 
-    @query_plan.setter
-    def query_plan(self, query_plan: List[object]):
-        """Sets the query_plan of this Query.
+    @query_message.setter
+    def query_message(self, query_message):
+        """Sets the query_message of this Query.
 
-        List of node types and edge types in a series that constitute a query plan. Experimental.  # noqa: E501
+        Message object that represents the query to be answered  # noqa: E501
 
-        :param query_plan: The query_plan of this Query.
-        :type query_plan: List[object]
+        :param query_message: The query_message of this Query.
+        :type query_message: List[Message]
         """
 
-        self._query_plan = query_plan
+        self._query_message = query_message
+
+    @property
+    def previous_message_processing_plan(self):
+        """Gets the previous_message_processing_plan of this Query.
+
+        Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned  # noqa: E501
+
+        :return: The previous_message_processing_plan of this Query.
+        :rtype: List[PreviousMessageProcessingPlan]
+        """
+        return self._previous_message_processing_plan
+
+    @previous_message_processing_plan.setter
+    def previous_message_processing_plan(self, previous_message_processing_plan):
+        """Sets the previous_message_processing_plan of this Query.
+
+        Container for one or more Message objects or identifiers for one or more Messages along with a processing plan for how those messages should be processed and returned  # noqa: E501
+
+        :param previous_message_processing_plan: The previous_message_processing_plan of this Query.
+        :type previous_message_processing_plan: List[PreviousMessageProcessingPlan]
+        """
+
+        self._previous_message_processing_plan = previous_message_processing_plan

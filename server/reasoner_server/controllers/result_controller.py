@@ -1,11 +1,4 @@
-import connexion
-import six
-
-from reasoner_server.models.feedback import Feedback  # noqa: E501
-from reasoner_server.models.result import Result  # noqa: E501
-from reasoner_server.models.result_feedback import ResultFeedback  # noqa: E501
-from reasoner_server import util
-
+import reasoner
 
 def get_result(result_id):  # noqa: E501
     """Request stored result
@@ -17,8 +10,7 @@ def get_result(result_id):  # noqa: E501
 
     :rtype: Result
     """
-    return 'do some magic!'
-
+    return reasoner.get_result(result_id)
 
 def get_result_feedback(result_id):  # noqa: E501
     """Request stored feedback for this result
@@ -30,8 +22,7 @@ def get_result_feedback(result_id):  # noqa: E501
 
     :rtype: ResultFeedback
     """
-    return 'do some magic!'
-
+    return reasoner.get_result_feedback(result_id)
 
 def post_result_feedback(result_id, feedback):  # noqa: E501
     """Store feedback for a particular result
@@ -43,8 +34,6 @@ def post_result_feedback(result_id, feedback):  # noqa: E501
     :param feedback: Comment information
     :type feedback: dict | bytes
 
-    :rtype: None
+    :rtype: FeedbackResponse
     """
-    if connexion.request.is_json:
-        feedback = Feedback.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+    return reasoner.post_result_feedback(result_id, feedback)

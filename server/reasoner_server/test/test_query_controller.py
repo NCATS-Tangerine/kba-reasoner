@@ -5,9 +5,8 @@ from __future__ import absolute_import
 from flask import json
 from six import BytesIO
 
-from reasoner_server.models.query import Query  # noqa: E501
-from reasoner_server.models.response import Response  # noqa: E501
-from reasoner_server.test import BaseTestCase
+from openapi_server.models.message import Message  # noqa: E501
+from openapi_server.test import BaseTestCase
 
 
 class TestQueryController(BaseTestCase):
@@ -16,13 +15,13 @@ class TestQueryController(BaseTestCase):
     def test_query(self):
         """Test case for query
 
-        Query using a predefined query type
+        Query reasoner via one of several inputs
         """
-        query = Query()
+        request_body = None
         response = self.client.open(
-            '//query',
+            '/query',
             method='POST',
-            data=json.dumps(query),
+            data=json.dumps(request_body),
             content_type='application/json')
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))

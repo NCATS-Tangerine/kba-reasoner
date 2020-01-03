@@ -1,6 +1,6 @@
 #!/bin/sh
-# This script downloads openapi-generator-cli.jar into a hidden directory and then uses it to generate a Java project stub
-# https://github.com/OpenAPITools/openapi-generator
+# This script downloads openapi-generator-cli.jar from https://github.com/OpenAPITools/openapi-generator
+# into a hidden directory and then uses it to generate server and client Python project stubs
 
 #############################
 ###       Constants       ###
@@ -9,16 +9,19 @@
 # This is a whitespace (space or tab) delimited list of lines that will be added to .openapi-generator-ignore prior to code generation, if they are not already present.
 IGNORE_LIST=""
 
-# This is where we will download openapi-generator-cli.jar from
-OPENAPI_GENERATOR_JAR_LOCATION="http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/3.2.3/openapi-generator-cli-3.2.3.jar -O .openapi-generator/openapi-generator-cli.jar"
+# This is where we will download openapi-generator-cli.jar from latest release 4.*.* version
+OPENAPI_GENERATOR_JAR_LOCATION="http://central.maven.org/maven2/org/openapitools/openapi-generator/4.2.2/openapi-generator-cli-4.2.2.jar -O .openapi-generator/openapi-generator-cli.jar"
 
 # Here we define the names of the directories that the server and client projects will be generated into
-SERVER_OUTPUT_DIR="server"
-CLIENT_OUTPUT_DIR="client"
-SERVER_PACKAGE_NAME="reasoner_server"
-CLIENT_PACKAGE_NAME="kba_client"
 PROJECT_NAME="kba-reasoner"
-PACKAGE_VERSION="1.1.1"
+
+SERVER_OUTPUT_DIR="server"
+SERVER_PACKAGE_NAME="reasoner_server"
+SERVER_PACKAGE_VERSION="0.9.2"
+
+CLIENT_OUTPUT_DIR="client"
+CLIENT_PACKAGE_NAME="kba_client"
+CLIENT_PACKAGE_VERSION="1.1.1"
 
 #############################
 ###        Methods        ###
@@ -89,7 +92,14 @@ fi
 
 # Get the specification file
 if [ -z "$2" ]; then
-	usage
+		if [ "$COMMAND" = client ]; then
+			SPECIFICATION_FILE_PATH=kba_api/beacon-aggregator-api.yaml
+	    elif [ "$COMMAND" = server ]; then
+			SPECIFICATION_FILE_PATH=reasoner_api/API/TranslatorReasonersAPI.yaml
+		else
+			echo "No default for unknown specification file\n"
+			usage
+		fi
 else
 	SPECIFICATION_FILE_PATH="$2"
 
@@ -120,19 +130,48 @@ else
 fi
 
 # Use openapi-generator-cli.jar to generate the server and client stub
-if [ "$COMMAND" = client ]; then
-	ensureValidIgnoreFile "$CLIENT_OUTPUT_DIR"
+if [ "$COMMAND" = validate ]; then
 
 	java -jar .openapi-generator/openapi-generator-cli.jar generate -i $SPECIFICATION_FILE_PATH -g python -o $CLIENT_OUTPUT_DIR \
-	          -D packageName=$CLIENT_PACKAGE_NAME -D projectName=$PROJECT_NAME -D packageVersion=$PACKAGE_VERSION
+	          -D packageName=$CLIENT_PACKAGE_NAME -D projectName=$PROJECT_NAME -D packageVersion=$SERVER_PACKAGE_VERSION
+
+	exit 0
+
+elif [ "$COMMAND" = client ]; then
+	ensureValidIgnoreFile "$CLIENT_OUTPUT_DIR"
+
+openapi-generator generate  --input-spec=kba_api/beacon-aggregator-api.yaml \
+                    --model-package=model \
+                    --output=client \
+                    --generator-name=python \
+                    --additional-properties="\
+--packageName=client.kba_client,\
+--projectName=kba-reasoner,\
+—-packageVersion=\"1.1.1\",\
+--packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
+
+	java -jar .openapi-generator/openapi-generator-cli.jar generate -i $SPECIFICATION_FILE_PATH -g python -o $CLIENT_OUTPUT_DIR \
+	          -D packageName=$CLIENT_PACKAGE_NAME -D projectName=$PROJECT_NAME -D packageVersion=$SERVER_PACKAGE_VERSION
 
 	exit 0
 
 elif [ "$COMMAND" = server ]; then
 	ensureValidIgnoreFile "$SERVER_OUTPUT_DIR"
 
-	java -jar .openapi-generator/openapi-generator-cli.jar generate -i $SPECIFICATION_FILE_PATH -g python-flask -o $SERVER_OUTPUT_DIR  \
-	          -D packageName=$SERVER_PACKAGE_NAME -D projectName=$PROJECT_NAME -D packageVersion=$PACKAGE_VERSION
+	openapi-generator generate --input-spec=reasoner_api/API/TranslatorReasonersAPI.yaml \
+                    --model-package=model \
+                    --output=server \
+                    --generator-name=python-flask \
+                    --additional-properties="\
+--packageName=server.reasoner_server,\
+--projectName=kba-reasoner,\
+—-packageVersion=\"0.9.2\",\
+--packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/server,\
+--serverPort=8080"
+
+	java -jar .openapi-generator/openapi-generator-cli.jar generate -i $SPECIFICATION_FILE_PATH -g python-flask \
+	          -o $SERVER_OUTPUT_DIR  -D packageName=$SERVER_PACKAGE_NAME -D projectName=$PROJECT_NAME
+	          -D packageVersion=$CLIENT_PACKAGE_VERSION
 	exit 0
 
 else

@@ -1,174 +1,131 @@
 # KBA Reasoner
 
-Application to create a proxy web service compliant with the [NCATS Translator Reasoner API](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI) which wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator).  The application is based on [Swagger codegen](https://swagger.io/docs/open-source-tools/swagger-codegen/) of a Python client (KBA API) and Python flask server (Reasoner API), bridged together with custom handler code.
+This application wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator) 
+with the [NCATS Reasoner Application programming Interface](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI).
 
-## Preparing the Code
-
-The client and server code was generated using the *'generator.sh'* shell script which uses the Swagger CodeGene Java jar. Since the two API's used here are somewhat stable for the moment, there is not normally any need to rerun the generator script to regenerate the stubs. In fact, running the scripts may be somewhat destructive for the code base unless carefully done.
-
-If you choose to regenerate the code (e.g. to use an updated versions of the APIs or substitute your own API), you should be aware of a few potential issues, discussed here:
-
-1. The Swagger 'python' (client) and 'python-flask' (server) code generation is a slightly buggy, in that the core package hierarchy for the server models is not generated completely correctly (to Python module standards).
-
-Specifically, under each of the *client/swagger_client* and *server/swagger_server* directories, the module trees starting with *bio.knowledge* are ill-formed. Thus, a small bit of refactoring is required every time the 'server' code is regenerated, mainly:
-
-     a)   Move the __init__.py and base_model_.py classes from the monolithic (dot named) directories named as follows:
-     
-     * bio.knowledge.client.api
-     * bio.knowledge.client.model
-     * bio.knowledge.server.model
-     
-     into their their equivalent, full subdirectory path(s) e.g. 'bio/knowledge/server/model' for 'bio.knowledge.server.model'
-     
-     b) To make this latter "bio.knowledge.etc." paths fully Python module compliant, create  empty s__init__.py file at each subdirectory level of the actual subdirectory path i.e. 'bio/knowledge/client' (note, but keep intact the __init__.py files  which you moved over into these directories, from the dot named directories in a) noted above)
-
-
-## Running the Application
-
-Two options:
-
-1. Run the application within Docker (preferred)
-2. Run the application directly (maybe useful for testing purposes... see **Testing the Application** below)
-
-### 1. Running under Docker
-
-#### Installation of Docker
-
-If you choose to run the dockerized versions of the applications, you'll obviously need to [install Docker first](https://docs.docker.com/engine/installation/) in your target Linux operating environment (bare metal server or virtual machine running Linux).
-
-For our installations, we typically use Ubuntu Linux, for which there is an [Ubuntu-specific docker installation using the repository](https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#install-using-the-repository).
-
-Note that you should have 'curl' installed first before installing Docker:
+Install and run without docker:
 
 ```
-$ sudo apt-get install curl
-```
+# Python 3.7 or better can be used
 
-For other installations, please find instructions specific to your choice of Linux variant, on the Docker site.
-
-#### Testing Docker
-
-In order to ensure that docker is working correctly, run the following command:
-
-```
-$ sudo docker run hello-world
-```
-
-This should result in the following output:
-```
-Unable to find image 'hello-world:latest' locally
-latest: Pulling from library/hello-world
-ca4f61b1923c: Pull complete
-Digest: sha256:be0cd392e45be79ffeffa6b05338b98ebb16c87b255f48e297ec7f98e123905c
-Status: Downloaded newer image for hello-world:latest
-
-Hello from Docker!
-This message shows that your installation appears to be working correctly.
-
-To generate this message, Docker took the following steps:
- 1. The Docker client contacted the Docker daemon.
- 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
-    (amd64)
- 3. The Docker daemon created a new container from that image which runs the
-    executable that produces the output you are currently reading.
- 4. The Docker daemon streamed that output to the Docker client, which sent it
-    to your terminal.
-
-To try something more ambitious, you can run an Ubuntu container with:
- $ docker run -it ubuntu bash
-
-Share images, automate workflows, and more with a free Docker ID:
- https://cloud.docker.com/
-
-For more examples and ideas, visit:
- https://docs.docker.com/engine/userguide/
-```
-#### Configuring the Application
-
-Copy the *config.yaml-template* into *config.yaml*.
-
-You can customize the *config.yaml* to set the desired TCP port for the application. Alternately, you can use the  **-p** directive in your docker *run* command (see below) to dynamically remap your Rhea application to publish the default port 8080 on another port of interest, e.g. **-p 8090:8080** 
-
-To build the Docker container, run the following command
-
-```
- $ cd ..  # make sure you are back in the root project directory
- $ sudo docker build -t ncats:kba-reasoner .
-```
-
-The **-t** directive explicitly names the Docker image for your container.  This command make take some time to execute, as it is downloading and building your docker container.
-
-To run the system, run the following command:
-
-```
-$ sudo docker run -d --rm -p 8090:8080 --name kbaR ncats:kba-reasoner
-```
-
-The **-n** explicitly names the Docker container (e.g. to 'kbaR'); **-d** parameter runs the application as a daemon; and the **-rm** directive forces deletion of the Docker container when it is stopped. To troubleshoot the Docker, you may sometimes wish to omit the latter two directives.
-
-To view the Docker (running) logs for the beacon, run the following:
-
-```
-$ sudo docker logs -f kbaR
-```
-
-To shut down the system, run the following:
-
-```
-$ sudo docker stop kbaR
-```
-
-### 2. Directly (code snippets are for Linux)
-
-#### Getting started
-
-Create a fresh virtual environment
-```
 virtualenv -p python3.7 venv
 source venv/bin/activate
+
+make install
+make run
 ```
 
-Install the project requirements:
+Build and start docker container:
+
 ```
-pip install -r requirements.txt
+make build
+make start
+```
+You can also use `make log` to see the docker containers logs, and `make stop` to stop the docker container.
+
+To regenerate the code:
+```
+make generate
 ```
 
-Setup the config file by copying the template file:
+There is also a `validate` target to check the API specifications, prior to regenerating the code:
+
 ```
-cp config.yaml-template config.yaml
+make validate
+```
+
+## Updating the Reasoner API Specification \
+
+The KBA Reasoner is an implementation of the 
+
+Refer to the [Python Flask server](./server) implementation of the Reasoner API wrapper of the KBA with 
+a corresponding [Python client](./client).  
+
+### (Re-)Generating the Server and Client
+
+The *client* is a direct Python web service client and the *server* is a simple Python Flask server implementation.
+
+The implementation of the KBA Reasoner server system uses code generation from an 
+[OpenAPI 3.* NCATS Reasoner API specification](./reasoner_api/API/TranslatorReasonersAPI.yaml), 
+which is used as a template to generate the code base, which is then wired up by delegation to additional handler code.  
+ 
+The implementation of the KBA client system uses code generation from an 
+[OpenAPI 3.* KBA API specification](./kba_api/beacon-aggregator-api.yaml), 
+which is used as a template to generate the code base, which is then wired up by delegation to additional handler code.  
+ 
+The generated and other client/server code is found in the *client* and  *server* subfolders.
+
+By [installing a local copy of the OpenAPI Code Generator](https://openapi-generator.tech/docs/installation), 
+modified OpenAPI 3.0 YAML specifications can be processed to recreate the Python client and Python Flask server stubs.
+
+The code generation commands are generally run from the root project directory directory.  First, one should check 
+your new or modified OpenAPI YAML specifications using the _validate_ command:
+
+```bash
+openapi-generator validate (-i | --input-spec=)reasoner_api/API/TranslatorReasonersAPI.yaml
+openapi-generator validate (-i | --input-spec=)kba_api/beacon-aggregator-api.yaml
+```
+
+If the specifications pass muster, then to recreate the Python Flask *server* stubs, the following command may 
+be typed from within the root directory:
+
+```bash
+openapi-generator generate --input-spec=reasoner_api/API/TranslatorReasonersAPI.yaml \
+                    --model-package=model \
+                    --output=server \
+                    --generator-name=python-flask \
+                    --additional-properties="\
+--packageName=server.reasoner_server,\
+--projectName=kba-reasoner,\
+—-packageVersion=\"0.9.2\",\
+--packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/server,\
+--serverPort=8080"
+```
+
+and to recreate the KBA *client* Python access stubs, something along the lines of the following command is typed:
+
+```bash
+openapi-generator generate  --input-spec=kba_api/beacon-aggregator-api.yaml \
+                    --model-package=model \
+                    --output=client \
+                    --generator-name=python \
+                    --additional-properties="\
+--packageName=client.kba_client,\
+--projectName=kba-reasoner,\
+—-packageVersion=\"1.1.1\",\
+--packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
+```
+
+The [OpenAPI 3.0 'generate' command usage](https://openapi-generator.tech/docs/usage#generate) may be consulted
+for more specific details on available code generation options and for acceptable program flag abbreviations (here we
+used the long form of the flags).
+
+The above commands are also wrapped inside of a `generate.sh` shell script in the root project directory and 
+may also be invoked using the provide Makefile targets.
+
+# Repairing the Generated Code
+
+In  both cases, after generating the code stubs, a developer needs to repair the regenerated code a bit.
+
+First, the code stubs must be reconnected to the (delegated) business logic to 
+the REST processing front end as required to get the system working again.  Developers can scrutinize recent working 
+releases of the code to best understand how the code stubs need to be reconnected or how to add new business logic.
+
+Generally, the nature of the *ncats.translator.* package structure can cause some runtime failures in import resolution 
+within the client generated code stubs. The solution seems to be to add the package prefixes 
+*ncats.translator.identifiers.client.* to *openapi_client* prefixed packages. Also,  in the  _api_client.py_ module, 
+an code embedded *openapi_client.model*  client package name is best repaired by adding the full package prefix *and* 
+importing the root *ncats* package by itself, i.e.
+
 ``` 
-(Optionally) change the port setting in `config.yaml` to match the port upon which you wish to publish the rhea beacon (if not port 8080).
-
-Navigate into the `/server` directory and run:
+import ncats
 ```
-python setup.py install
-```
+plus to add imports of all the model classes inside the client *model* ```__init__.py```  package level file.
 
-Then navigate into the `/client` directories and do the same.
+Also, the *server* and *client* subdirectory _README.md_ and _setup.py_ files are overwritten by the code generation. 
+These should be restored from the \*-master.\* versions of these files in each directory.
+ 
+Finally, check if the `server/openapi_server/__main__.py` file has the correct Identifiers server port (8080).
 
-Then navigate into the `/server` directory and run the program with:
-```
-python -m swagger_server
-```
-
-The Swagger UI can be found at `{basepath}/ui/`, e.g. `localhost:8080/ui/`
-
-#### Configuring the Wrapper
-
-You can change the port in the `config.yaml` file.
-
-## Testing the Application
-
-### Client Side
-
-The client side of the application is a client accessing the KBA REST API. A 'tox.ini' file
-is available to run the unit tests, which are run both under Python 2.7 and Python 3.5 (note
-that the OpenAPI code generated tox.ini file only specifies an py3 environment but you should
-change this to a py35 environment for testing since the generated code is incompatible with
-Python 3.7 or later due to the addition of a new reserved keyword 'async')
-
-### Server Side
-
-The server side has a 'tox.ini' file which may be used to test the server code.
-Be warned that the ReasonerAPI OpenAPI specification has a peculiarity that 
-results in unit test failure (to be investigated).
+For good measure, after such extensive rebuilding of the libraries, the 'pip' environment dependencies should also 
+be updated, as documented for the client and server, prior to re-testing and using the updated software.
