@@ -10,7 +10,8 @@
 # .openapi-generator-ignore prior to code generation, if they are not already present.
 IGNORE_LIST=""
 
-# This is where we will download openapi-generator-cli from the latest release
+# This is where we will download openapi-generator-cli from the latest release;
+# Override these settings if your local installation of the tool deviates
 OPENAPI_GENERATOR_CLI="openapi-generator-cli"
 OPENAPI_GENERATOR_CLI_PATH="/usr/local/bin/${OPENAPI_GENERATOR_CLI}"
 

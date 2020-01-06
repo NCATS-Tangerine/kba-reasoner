@@ -1,9 +1,3 @@
-openapi-generator:
-	echo "(Re-)installing OpenAPI Generator Tool"
-	curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > /usr/local/bin/openapi-generator-cli
-	chmod u+x /usr/local/bin/openapi-generator-cli
-	openapi-generator-cli version
-
 download-swagger-ui:
 	wget --no-clobber https://files.pythonhosted.org/packages/0e/bb/d00f72e512784af20e368d2ecd5868c51a5aa3688d26ace5f4391651a3ce/swagger_ui_bundle-0.0.3-py3-none-any.whl
 
