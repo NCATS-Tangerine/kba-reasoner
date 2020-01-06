@@ -3,8 +3,8 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "reasoner_server"
-VERSION = "0.9.2"
+NAME = "openapi_server"
+VERSION = "1.0.0"
 
 # To install the library, run the following
 #
@@ -13,23 +13,27 @@ VERSION = "0.9.2"
 # prerequisite: setuptools
 # http://pypi.python.org/pypi/setuptools
 
-REQUIRES = ["connexion"]
+REQUIRES = [
+    "connexion>=2.0.2",
+    "swagger-ui-bundle>=0.0.2",
+    "python_dateutil>=2.6.0"
+]
 
 setup(
     name=NAME,
     version=VERSION,
-    description="NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator",
-    author_email="richard@starinformatics.com",
+    description="OpenAPI for NCATS Biomedical Translator Reasoners",
+    author_email="edeutsch@systemsbiology.org",
     url="",
-    keywords=["OpenAPI", "NCATS Translator Reasoner API Wrapper for the Knowledge Beacon Aggregator"],
+    keywords=["OpenAPI", "OpenAPI for NCATS Biomedical Translator Reasoners"],
     install_requires=REQUIRES,
     packages=find_packages(),
-    package_data={'': ['reasoner_api/API/TranslatorReasonersAPI.yaml']},
+    package_data={'': ['openapi/openapi.yaml']},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['reasoner_server=reasoner_server.__main__:main']
-    },
+        'console_scripts': ['openapi_server=openapi_server.__main__:main']},
     long_description="""\
-    NCATS Biomedical Translator Reasoner API Wrapping the NCATS Knowledge Beacon Aggregator API
+    OpenAPI for NCATS Biomedical Translator Reasoners
     """
 )
+

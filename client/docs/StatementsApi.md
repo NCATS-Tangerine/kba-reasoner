@@ -1,4 +1,4 @@
-# kba_client.StatementsApi
+# openapi_client.StatementsApi
 
 All URIs are relative to *https://kba.ncats.io*
 
@@ -18,15 +18,16 @@ Method | HTTP request | Description
 Retrieves a details relating to a specified concept-relationship statement include 'is_defined_by and 'provided_by' provenance; extended edge properties exported as tag = value; and any associated annotations (publications, etc.)  cited as evidence for the given statement. 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.StatementsApi()
+# Create an instance of the API class
+api_instance = openapi_client.StatementsApi()
 statement_id = 'statement_id_example' # str | (url-encoded) CURIE identifier of the concept-relationship statement (\"assertion\", \"claim\") for which associated evidence is sought, e.g. kbs:Q420626_P2175_Q126691 
 keywords = ['keywords_example'] # list[str] | an array of keywords or substrings against which to filter a reference label (e.g. title) statement evidence citation array. (optional)
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of statement.evidence array entries. Defaults to 1.  (optional)
@@ -61,6 +62,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successful call with statement details returned  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_statements_query**
@@ -71,15 +77,16 @@ No authorization required
 Given a specification [CURIE-encoded](https://www.w3.org/TR/curie/) a 'source' clique identifier for a set of exactly matching concepts,  retrieves a paged list of concept-relations where either the subject or object concept matches the 'source' clique identifier.  Optionally, a 'target' clique identifier may also be given, in which case the 'target' clique identifier should match the concept clique opposing the 'source', that is, if the 'source' matches a subject, then the  'target' should match the object of a given statement (or vice versa). 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.StatementsApi()
+# Create an instance of the API class
+api_instance = openapi_client.StatementsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of statement query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose statements are to be retrieved  (optional)
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of query results. Defaults to '1'.  (optional)
@@ -114,6 +121,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response returns a list of concept-relations where there is an exact match of an input concept identifier either to the subject or object concepts of the statement  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_statements_query_status**
@@ -124,15 +136,16 @@ No authorization required
 Retrieves the status of a given query about the statements in the system 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.StatementsApi()
+# Create an instance of the API class
+api_instance = openapi_client.StatementsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of statements  query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose status is being polled (if omitted, then the status of all beacons from the query are returned)  (optional)
 
@@ -163,6 +176,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful concept query initialization, with initial query status returned  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **post_statements_query**
@@ -173,15 +191,16 @@ No authorization required
 Posts a query to retrieve concept-relations where either the subject or object concept matches a [CURIE-encoded 'source'](https://www.w3.org/TR/curie/) clique identifier designating a set of exactly matching concepts. A 'target' clique identifier may optionally be given, in which case the 'target' clique identifier should match the concept clique opposing the 'source', that is, if the 'source' matches a subject, then the  'target' should match the object of a given statement (or vice versa). 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.StatementsApi()
+# Create an instance of the API class
+api_instance = openapi_client.StatementsApi()
 source = 'source_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier of the  exactly matching 'source' clique, cliques as identified by other endpoints of the beacon aggregator API.  
 relations = ['relations_example'] # list[str] | a subset (array) of identifiers of predicate relation identifiers with which to constrain the statement relations retrieved  for the given query seed concept. The predicate ids sent should  be as published by the beacon-aggregator by the /predicates API endpoint.  (optional)
 target = 'target_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier of the  exactly matching 'target' clique, cliques as identified by other endpoints of the beacon aggregator API.   (optional)
@@ -219,6 +238,11 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful concept query initialization, with initial query status returned  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

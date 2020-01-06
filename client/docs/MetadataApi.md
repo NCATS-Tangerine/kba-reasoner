@@ -1,4 +1,4 @@
-# kba_client.MetadataApi
+# openapi_client.MetadataApi
 
 All URIs are relative to *https://kba.ncats.io*
 
@@ -19,15 +19,16 @@ Method | HTTP request | Description
 Get a list of all of the knowledge beacons that the aggregator can query 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.MetadataApi()
+# Create an instance of the API class
+api_instance = openapi_client.MetadataApi()
 
 try:
     api_response = api_instance.get_beacons()
@@ -52,6 +53,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response with beacons  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_concept_categories**
@@ -62,15 +68,16 @@ No authorization required
 Get a list of semantic categories and number of instances in each  available knowledge beacon, including associated beacon-specific metadata 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.MetadataApi()
+# Create an instance of the API class
+api_instance = openapi_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain categories returned  (optional)
 
 try:
@@ -99,6 +106,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response with concept categories and frequency returned  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_errors**
@@ -109,15 +121,16 @@ No authorization required
 Get a log of the system errors associated with a specified query 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.MetadataApi()
+# Create an instance of the API class
+api_instance = openapi_client.MetadataApi()
 query_id = 'query_id_example' # str | query identifier returned from a POSTed query 
 
 try:
@@ -146,6 +159,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response with most recent errors  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_knowledge_map**
@@ -156,15 +174,16 @@ No authorization required
 Get a high level knowledge map of the all the beacons specified by triplets of subject concept category, relationship predicate and concept object category 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.MetadataApi()
+# Create an instance of the API class
+api_instance = openapi_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons constraining knowledge maps returned   (optional)
 
 try:
@@ -193,6 +212,11 @@ No authorization required
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response with categories and frequency returned  |  -  |
+
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_predicates**
@@ -203,15 +227,16 @@ No authorization required
 Get a list of predicates used in statements issued by the knowledge source 
 
 ### Example
+
 ```python
 from __future__ import print_function
 import time
-import kba_client
-from kba_client.rest import ApiException
+import openapi_client
+from openapi_client.rest import ApiException
 from pprint import pprint
 
-# create an instance of the API class
-api_instance = kba_client.MetadataApi()
+# Create an instance of the API class
+api_instance = openapi_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain predicates returned  (optional)
 
 try:
@@ -239,6 +264,11 @@ No authorization required
 
  - **Content-Type**: Not defined
  - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successful response with predicates with CURIE and definitions indexed by beacons which support the relation  |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 

@@ -1,5 +1,6 @@
 # ClientConceptDetail
 
+Additional attributes associated with a concept 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------

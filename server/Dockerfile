@@ -13,5 +13,4 @@ EXPOSE 8080
 
 ENTRYPOINT ["python3"]
 
-CMD ["-m", "reasoner_server"]
-
+CMD ["-m", "openapi_server"]
