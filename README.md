@@ -26,14 +26,18 @@ virtualenv -p python3.7 venv
 source venv/bin/activate
 ```
 
-Before using the code, 
+## Running the System
+
+There are two ways to run the system: directly as a standalone system or within a Docker container.
+
+To install and run the code directly: 
 
 ```bash
 make install
 make run
 ```
 
-Build and start docker container:
+To build and start the system within a Docker container:
 
 ```bash
 make build
