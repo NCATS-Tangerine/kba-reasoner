@@ -134,7 +134,7 @@ else
 	echo "(Re-)installing OpenAPI Generator Tool (may need to be 'sudo' to succeed)"
 	curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh \
 		> ${OPENAPI_GENERATOR_CLI_PATH}
-	chmod u+x ${OPENAPI_GENERATOR_CLI_PATH}
+	chmod uga+x ${OPENAPI_GENERATOR_CLI_PATH}
 	${OPENAPI_GENERATOR_CLI} version
 fi
 
