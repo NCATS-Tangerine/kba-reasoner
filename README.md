@@ -11,7 +11,7 @@ execution as a standalone system (see below for Docker)
 The **kba-reasoner** package is not yet available through PyPI, thus, to install, clone this repo using git.
 
 ```bash
-git clone https://github.com/NCATS-Tangerine/kba-reasoner.git
+git clone --recursive https://github.com/NCATS-Tangerine/kba-reasoner.git
 
 # ... then  enter  into your cloned project repository
 cd kba-reasoner
@@ -19,43 +19,66 @@ cd kba-reasoner
 
 The code is now validated to work only with Python 3.7 only.  We recommend using a **virtualenv** to enforce this.
 
-```
+```bash
 # Python 3.7 or better can be used
 
 virtualenv -p python3.7 venv
 source venv/bin/activate
+```
 
+Before using the code, 
+
+```bash
 make install
 make run
 ```
 
 Build and start docker container:
 
-```
+```bash
 make build
 make start
 ```
+
 You can also use `make log` to see the docker containers logs, and `make stop` to stop the docker container.
 
-To regenerate the code:
-```
-make generate
+## Updating the Reasoner API Specification
+
+The Makefile may also be used to regenerate the code.
+
+First, the [OpenAPI Code Generator](https://openapi-generator.tech/docs/installation) needs to be installed. The
+`Makefile` wraps the installation of the `bash` scripted version of the tool which may not work under all platforms but 
+you can also manually install the tool and make it visible as a runnable binary or macro called `openapi-generator`.
+
+```bash
+make openapi-generator
 ```
 
-There is also a `validate` target to check the API specifications, prior to regenerating the code:
+There is a `validate` target to check the OpenAPI specifications, prior to regenerating the code:
 
-```
+```bash
 make validate
 ```
 
-## Updating the Reasoner API Specification \
+After installing the `openapi-generator` tool and validating the API's, the code may be (re-)generated:
+
+```bash
+make generate
+```
+
+### The Gory Details...
+
+Ideally, the aforementioned `make` process should work but, just in case, we provide more details on the whole code 
+generation procedure here below.
+
+#### The OpenAPI specifications
 
 The KBA Reasoner is an implementation of the 
 
 Refer to the [Python Flask server](./server) implementation of the Reasoner API wrapper of the KBA with 
 a corresponding [Python client](./client).  
 
-### (Re-)Generating the Server and Client
+#### (Re-)Generating the Server and Client
 
 The *client* is a direct Python web service client and the *server* is a simple Python Flask server implementation.
 
@@ -121,7 +144,7 @@ used the long form of the flags).
 The above commands are also wrapped inside of a `generate.sh` shell script in the root project directory and 
 may also be invoked using the provide Makefile targets.
 
-# Repairing the Generated Code
+#### Repairing the Generated Code
 
 In  both cases, after generating the code stubs, a developer needs to repair the regenerated code a bit.
 

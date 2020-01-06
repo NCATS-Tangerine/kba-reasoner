@@ -1,3 +1,9 @@
+openapi-generator:
+	echo "(Re-)installing OpenAPI Generator Tool"
+	sudo curl https://raw.githubusercontent.com/OpenAPITools/openapi-generator/master/bin/utils/openapi-generator-cli.sh > /usr/local/bin/openapi-generator-cli
+	sudo chmod u+x /usr/local/bin/openapi-generator-cli
+	sudo openapi-generator-cli version
+
 download-swagger-ui:
 	wget --no-clobber https://files.pythonhosted.org/packages/0e/bb/d00f72e512784af20e368d2ecd5868c51a5aa3688d26ace5f4391651a3ce/swagger_ui_bundle-0.0.3-py3-none-any.whl
 
@@ -15,9 +21,6 @@ validate:
 	generate.sh validate kba_api/beacon-aggregator-api.yaml
 
 generate:
-	wget http://central.maven.org/maven2/org/openapitools/openapi-generator-cli/4.2.2/openapi-generator-cli-4.2.2.jar \
-		--no-clobber \
-		-O openapi-generator-cli.jar || echo 'Skipped downloading'
 	generate.sh server
 	generate.sh client
 	# Replace the generated __main__ file with our custom __main__ file
