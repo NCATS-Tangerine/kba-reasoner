@@ -3,7 +3,21 @@
 This application wraps the [Knowledge Beacon Aggregator](https://github.com/NCATS-Tangerine/beacon-aggregator) 
 with the [NCATS Reasoner Application programming Interface](https://github.com/NCATS-Tangerine/NCATS-ReasonerStdAPI).
 
-Install and run without docker:
+## Getting and Configuring the Project
+
+The system may be run as a standalone application or within a Docker container. In this section, we assume direct 
+execution as a standalone system (see below for Docker)
+
+The **kba-reasoner** package is not yet available through PyPI, thus, to install, clone this repo using git.
+
+```bash
+git clone https://github.com/NCATS-Tangerine/kba-reasoner.git
+
+# ... then  enter  into your cloned project repository
+cd kba-reasoner
+```
+
+The code is now validated to work only with Python 3.7 only.  We recommend using a **virtualenv** to enforce this.
 
 ```
 # Python 3.7 or better can be used
