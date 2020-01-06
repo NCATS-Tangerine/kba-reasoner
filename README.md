@@ -58,7 +58,8 @@ The generated and other client/server code is found in the *client* and  *server
 By [installing a local copy of the OpenAPI Code Generator](https://openapi-generator.tech/docs/installation), 
 modified OpenAPI 3.0 YAML specifications can be processed to recreate the Python client and Python Flask server stubs.
 Note that depending on how you install the OpenAPI Code Generator, the manner in which you execute the 
- `openapi-generator` command below will change accordingly.
+ `openapi-generator` command below will change accordingly (Note that the code generation processes are a bit more 
+ streamlined and robust under Linux and OSX than Microsoft Windows).
 
 The code generation commands are generally run from the root project directory directory.  First, one should check 
 your new or modified OpenAPI YAML specifications using the _validate_ command:
