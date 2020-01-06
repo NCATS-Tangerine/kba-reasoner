@@ -4,7 +4,9 @@ RUN mkdir -p /usr/src
 
 WORKDIR /usr/src
 
-COPY reasoner reasoner
+# the 'reasoner' directory was deprecated(?)
+# COPY reasoner reasoner
+
 COPY server server
 COPY client client
 COPY requirements.txt requirements.txt

@@ -57,6 +57,8 @@ The generated and other client/server code is found in the *client* and  *server
 
 By [installing a local copy of the OpenAPI Code Generator](https://openapi-generator.tech/docs/installation), 
 modified OpenAPI 3.0 YAML specifications can be processed to recreate the Python client and Python Flask server stubs.
+Note that depending on how you install the OpenAPI Code Generator, the manner in which you execute the 
+ `openapi-generator` command below will change accordingly.
 
 The code generation commands are generally run from the root project directory directory.  First, one should check 
 your new or modified OpenAPI YAML specifications using the _validate_ command:
@@ -78,7 +80,8 @@ openapi-generator generate --input-spec=reasoner_api/API/TranslatorReasonersAPI.
 --packageName=server.reasoner_server,\
 --projectName=kba-reasoner,\
 —-packageVersion=\"0.9.2\",\
---packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/server,\
+--packageUrl=c\
+tree/master/server,\
 --serverPort=8080"
 ```
 
