@@ -17,12 +17,12 @@ run:
 	cd server && python -m reasoner_server
 
 validate:
-	generate.sh validate reasoner_api/API/TranslatorReasonersAPI.yaml
-	generate.sh validate kba_api/beacon-aggregator-api.yaml
+	./generate.sh validate reasoner_api/API/TranslatorReasonersAPI.yaml
+	./generate.sh validate kba_api/beacon-aggregator-api.yaml
 
 generate:
-	generate.sh server
-	generate.sh client
+	./generate.sh server
+	./generate.sh client
 	# Replace the generated __main__ file with our custom __main__ file
 	rm server/reasoner_server/__main__.py
 	cp __main__.py-template server/reasoner_server/__main__.py
