@@ -78,7 +78,7 @@ fix the execute permissions for general access, so 'sudo' shouldn't be needed af
 After installing the `openapi-generator` tool and validating the API's, the code may be (re-)generated:
 
 ```bash
-make generate
+make code-generation
 ```
 
 ### The Gory Details...
