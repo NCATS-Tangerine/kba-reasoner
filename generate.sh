@@ -12,19 +12,19 @@ IGNORE_LIST=""
 
 # This is where we will download openapi-generator-cli from the latest release
 OPENAPI_GENERATOR_CLI="openapi-generator-cli"
-OPENAPI_GENERATOR_CLI_PATH="/usr/local/bin/"+${OPENAPI_GENERATOR_CLI}
+OPENAPI_GENERATOR_CLI_PATH="/usr/local/bin/${OPENAPI_GENERATOR_CLI}"
 
 # Here we define the default values of the code generation parameters
 # guiding the generation of the server and client projects (these may be overridden in the invoking environment)
 PROJECT_NAME="kba-reasoner"
 
-CLIENT_SPECIFICATION_FILE_PATH=./kba_api/beacon-aggregator-api.yaml
+CLIENT_SPECIFICATION_FILE_PATH="./kba_api/beacon-aggregator-api.yaml"
 CLIENT_OUTPUT_DIR="client"
 CLIENT_PACKAGE_NAME="kba_client"
 CLIENT_PACKAGE_VERSION="1.1.1"
 CLIENT_PACKAGE_URL="https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
 
-SERVER_SPECIFICATION_FILE_PATH=./reasoner_api/API/TranslatorReasonersAPI.yaml
+SERVER_SPECIFICATION_FILE_PATH="./reasoner_api/API/TranslatorReasonersAPI.yaml"
 SERVER_OUTPUT_DIR="server"
 SERVER_PACKAGE_NAME="reasoner_server"
 SERVER_PACKAGE_VERSION="0.9.2"
