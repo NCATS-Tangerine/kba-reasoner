@@ -33,7 +33,7 @@ There are two ways to run the system: directly as a standalone system or within 
 To install and run the code directly: 
 
 ```bash
-make install
+make installation
 make run
 ```
 
@@ -50,30 +50,23 @@ You can also use `make log` to see the docker containers logs, and `make stop` t
 
 The Makefile may also be used to regenerate the code.
 
-First, the [OpenAPI Code Generator](https://openapi-generator.tech/docs/installation) needs to be installed. The
-`Makefile` wraps the installation of the `bash` scripted version of the tool which may not work under all platforms but 
-you can also manually install the tool and make it visible as a runnable binary or macro called `openapi-generator`. 
-Note the use of `sudo` to run the `openapi-generator` target (since it installs the tool under `/usr/local/bin`) 
+There is a `validation` target to check the project OpenAPI specifications, prior to regenerating the code:
 
 ```bash
-sudo make openapi-generator
-```
-
-There is a `validate` target to check the OpenAPI specifications, prior to regenerating the code:
-
-```bash
-make validate
+make validation
 ```
 
 The *validate* target calls a local shell script `generate.sh` in the root directory of the project.  This script 
-checks for the presence of the [OpenAPI Code Generator](https://openapi-generator.tech/docs/installation) 
-binary and attempts to install it if it is not yet installed on the computer. This installation may be problematic on  
-some platforms (e.g. Microsoft Windows) but you can also manually install the tool. If you do this, you may need to 
-override the OPENAPI_GENERATOR_CLI and OPENAPI_GENERATOR_CLI_PATH environment variables used by the generator script.
-Even on Unix-type systems, the `generate.sh` script installation of the OpenAPI Code generator may fail if not run as 
-'sudo' since the binary is being installed under _/usr/local/bin_, thus so you may need to run the above *validate* 
-make target as sudo the first time, to ensure a sucessful installation (however, the installation processes does 
-fix the execute permissions for general access, so 'sudo' shouldn't be needed afterwards).
+checks for the presence of the OpenAPI Code Generator binary and attempts to install it if it is not yet installed 
+on the computer. This installation may be problematic on some platforms (e.g. Microsoft Windows) but you can also 
+[manually install the OpenAPI Code Generator](https://openapi-generator.tech/docs/installation). If you do this, 
+you may need to override the OPENAPI_GENERATOR_CLI and OPENAPI_GENERATOR_CLI_PATH environment variables used by the 
+generator script.  
+
+Even on Unix-type systems, the `generate.sh` script installation of the OpenAPI Code generator may 
+fail if not run as 'sudo' since the binary is being installed under _/usr/local/bin_, thus so you may need to run the 
+above *validation* make target as `sudo` the first time, to ensure a successful installation (however, the 
+installation processes does fix the execute permissions for general access, so 'sudo' should not be needed afterwards).
  
 After installing the `openapi-generator` tool and validating the API's, the code may be (re-)generated:
 
