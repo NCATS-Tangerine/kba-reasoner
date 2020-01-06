@@ -17,8 +17,7 @@ run:
 	cd server && python -m reasoner_server
 
 validate:
-	./generate.sh validate reasoner_api/API/TranslatorReasonersAPI.yaml
-	./generate.sh validate kba_api/beacon-aggregator-api.yaml
+	./generate.sh validate
 
 generate:
 	./generate.sh server
