@@ -52,10 +52,11 @@ The Makefile may also be used to regenerate the code.
 
 First, the [OpenAPI Code Generator](https://openapi-generator.tech/docs/installation) needs to be installed. The
 `Makefile` wraps the installation of the `bash` scripted version of the tool which may not work under all platforms but 
-you can also manually install the tool and make it visible as a runnable binary or macro called `openapi-generator`.
+you can also manually install the tool and make it visible as a runnable binary or macro called `openapi-generator`. 
+Note the use of `sudo` to run the `openapi-generator` target (since it installs the tool under `/usr/local/bin`) 
 
 ```bash
-make openapi-generator
+sudo make openapi-generator
 ```
 
 There is a `validate` target to check the OpenAPI specifications, prior to regenerating the code:
