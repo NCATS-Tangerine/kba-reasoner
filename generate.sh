@@ -157,14 +157,16 @@ elif [ "$COMMAND" = client ]; then
 	ensureValidIgnoreFile ${CLIENT_OUTPUT_DIR}
 
 	${OPENAPI_GENERATOR_CLI} generate --input-spec=${CLIENT_SPECIFICATION_FILE_PATH} \
-	                --model-package=model \
 	                --output=${CLIENT_OUTPUT_DIR} \
 	                --generator-name=python \
+	                --package-name=${CLIENT_PACKAGE_NAME} \
+	                --model-package=model \
+	                --artifact-version=${CLIENT_PACKAGE_VERSION} \
 	                --additional-properties="\
-	--projectName=\""+${PROJECT_NAME}+"\",\
-	--packageName=\""+${CLIENT_PACKAGE_NAME}+"\",\
-	—-packageVersion=\""+${CLIENT_PACKAGE_VERSION}+"\",\
-	--packageUrl=\""+${CLIENT_PACKAGE_URL}+"\""
+--projectName=\""+${PROJECT_NAME}+"\",\
+--packageName=\""+${CLIENT_PACKAGE_NAME}+"\",\
+—-packageVersion=\""+${CLIENT_PACKAGE_VERSION}+"\",\
+--packageUrl=\""+${CLIENT_PACKAGE_URL}+"\""
 
 	exit 0
 
@@ -173,15 +175,17 @@ elif [ "$COMMAND" = server ]; then
 	ensureValidIgnoreFile ${SERVER_OUTPUT_DIR}
 
 	${OPENAPI_GENERATOR_CLI} generate --input-spec=${SERVER_SPECIFICATION_FILE_PATH} \
-	                --model-package=model \
 	                --output=${SERVER_OUTPUT_DIR} \
 	                --generator-name=python-flask \
+	                --package-name=${SERVER_PACKAGE_NAME} \
+	                --model-package=model \
+	                --artifact-version=${SERVER_PACKAGE_VERSION} \
 	                --additional-properties="\
-	--projectName=\""+${PROJECT_NAME}+"\",\
-	--packageName=\""+${SERVER_PACKAGE_NAME}+"\",\
-	—-packageVersion=\""+${SERVER_PACKAGE_VERSION}+"\",\
-	--packageUrl=\""+${SERVER_PACKAGE_URL}+"\",\
-	--serverPort=\""+${SERVER_PORT}+"\""
+--projectName=\""+${PROJECT_NAME}+"\",\
+--packageName=\""+${CLIENT_PACKAGE_NAME}+"\",\
+—-packageVersion=\""+${CLIENT_PACKAGE_VERSION}+"\",\
+--packageUrl=\""+${SERVER_PACKAGE_URL}+"\",\
+--serverPort=\""+${SERVER_PORT}+"\""
 
 	exit 0
 
