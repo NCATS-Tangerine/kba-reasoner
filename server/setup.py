@@ -4,7 +4,7 @@ import sys
 from setuptools import setup, find_packages
 
 NAME = "reasoner_server"
-VERSION = "1.1.1"
+VERSION = "0.9.2"
 
 # To install the library, run the following
 #
