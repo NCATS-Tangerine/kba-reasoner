@@ -119,30 +119,26 @@ be typed from within the root directory:
 
 ```bash
 openapi-generator generate --input-spec=reasoner_api/API/TranslatorReasonersAPI.yaml \
-                    --model-package=model \
                     --output=server \
                     --generator-name=python-flask \
-                    --additional-properties="\
---packageName=server.reasoner_server,\
---projectName=kba-reasoner,\
-—-packageVersion=\"0.9.2\",\
---packageUrl=c\
-tree/master/server,\
---serverPort=8080"
+                    --package-name=reasoner_server \
+	                --model-package=model \
+	                --artifact-version=0.9.2 \
+	                --additional-properties=\
+"projectName=reasoner_server,packageName=reasoner_server,packageVersion=0.9.2,packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/master/server,serverPort=8080"
 ```
 
 and to recreate the KBA *client* Python access stubs, something along the lines of the following command is typed:
 
 ```bash
 openapi-generator generate  --input-spec=kba_api/beacon-aggregator-api.yaml \
-                    --model-package=model \
                     --output=client \
                     --generator-name=python \
-                    --additional-properties="\
---packageName=client.kba_client,\
---projectName=kba-reasoner,\
-—-packageVersion=\"1.1.1\",\
---packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
+                    --package-name=kba_client \
+	                --model-package=model \
+	                --artifact-version=1.1.1 \
+	                --additional-properties=\
+"projectName=kba_client,packageName=kba_client,packageVersion=1.1.1,packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
 ```
 
 The [OpenAPI 3.0 'generate' command usage](https://openapi-generator.tech/docs/usage#generate) may be consulted
@@ -160,7 +156,7 @@ First, the code stubs must be reconnected to the (delegated) business logic to t
 required to get the system working again.  Developers can scrutinize recent working releases of the code to 
 best understand how the code stubs need to be reconnected or how to add new business logic.
 
-Also, the *server* and *client* subdirectory _README.md_ and _setup.py_ files are overwritten by the code generation. 
+Also, the *server* and *client* subdirectory _README.md_ file are overwritten by the code generation. 
 These should be restored from the \*-master.\* versions of these files in each directory.
  
 Finally, check if the `server/openapi_server/__main__.py` file has the correct Identifiers server port (8080).
