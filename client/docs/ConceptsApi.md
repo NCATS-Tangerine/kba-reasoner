@@ -1,4 +1,4 @@
-# openapi_client.ConceptsApi
+# kba_client.ConceptsApi
 
 All URIs are relative to *https://kba.ncats.io*
 
@@ -25,12 +25,12 @@ Retrieves a list of concept cliques based on  'data ready' from a previously /cl
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 query_id = 'query_id_example' # str | the query identifier of a concepts query previously posted by the /cliques endpoint
 
 try:
@@ -78,12 +78,12 @@ Retrieves the status of a given query about the cliques in the system
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of clique query parameters.
 
 try:
@@ -131,12 +131,12 @@ Retrieves details for a specified clique of equivalent concepts in the system,  
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 clique_id = 'clique_id_example' # str | a [CURIE-encoded](https://www.w3.org/TR/curie/) identifier, as returned  by any other endpoint of the beacon aggregator API, of an exactly matching  concept clique of interest.
 beacons = [56] # list[int] | set of aggregator indices of beacons to be used as knowledge sources for the query  (optional)
 
@@ -186,12 +186,12 @@ Retrieves a (paged) list of basic equivalent concept clique data from beacons 'd
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 query_id = 'query_id_example' # str | the query identifier of a concepts query previously posted by the /concepts endpoint
 beacons = [56] # list[int] | set of aggregator indices of beacons whose data are to be retrieved  (optional)
 page_number = 56 # int | (1-based) number of the page to be returned in a paged set of query results. Defaults to '1'.  (optional)
@@ -245,12 +245,12 @@ Retrieves the status of a given keyword search query about the concepts in the s
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 query_id = 'query_id_example' # str | an active query identifier as returned by a POST of concept query parameters.
 beacons = [56] # list[int] | subset of aggregator indices of beacons whose status is being polled (if omitted, then the status of all beacons from the query are returned)  (optional)
 
@@ -300,12 +300,12 @@ Retrieves the beacon aggregator assigned cliques of equivalent concepts that inc
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 ids = ['ids_example'] # list[str] | an array of [CURIE-encoded](https://www.w3.org/TR/curie/)  identifiers of interest to be resolved to a list of concept cliques
 
 try:
@@ -353,12 +353,12 @@ Posts the query parameters to retrieves a list of  concepts from the system
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.ConceptsApi()
+api_instance = kba_client.ConceptsApi()
 keywords = ['keywords_example'] # list[str] | an array of keywords or substrings against which to match concept names and synonyms
 categories = ['categories_example'] # list[str] | a subset array of concept categories (specified as codes 'gene',  'pathway', etc.) to which to constrain concepts matched by the main keyword search (see [Biolink Model](https://biolink.github.io/biolink-model) for the full list of codes)  (optional)
 beacons = [56] # list[int] | subset of aggregator indices of beacons to be used as knowledge sources for the query (if omitted, then the all beacons are queried)  (optional)

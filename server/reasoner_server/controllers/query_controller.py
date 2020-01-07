@@ -1,4 +1,9 @@
-import reasoner
+import connexion
+import six
+
+from reasoner_server.model.message import Message  # noqa: E501
+from reasoner_server import util
+
 
 def query(request_body):  # noqa: E501
     """Query reasoner via one of several inputs
@@ -10,4 +15,4 @@ def query(request_body):  # noqa: E501
 
     :rtype: Message
     """
-    return reasoner.query(request_body)
+    return 'do some magic!'

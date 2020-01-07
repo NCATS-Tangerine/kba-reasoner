@@ -1,4 +1,4 @@
-# openapi_client.MetadataApi
+# kba_client.MetadataApi
 
 All URIs are relative to *https://kba.ncats.io*
 
@@ -23,12 +23,12 @@ Get a list of all of the knowledge beacons that the aggregator can query
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.MetadataApi()
+api_instance = kba_client.MetadataApi()
 
 try:
     api_response = api_instance.get_beacons()
@@ -72,12 +72,12 @@ Get a list of semantic categories and number of instances in each  available kno
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.MetadataApi()
+api_instance = kba_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain categories returned  (optional)
 
 try:
@@ -125,12 +125,12 @@ Get a log of the system errors associated with a specified query
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.MetadataApi()
+api_instance = kba_client.MetadataApi()
 query_id = 'query_id_example' # str | query identifier returned from a POSTed query 
 
 try:
@@ -178,12 +178,12 @@ Get a high level knowledge map of the all the beacons specified by triplets of s
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.MetadataApi()
+api_instance = kba_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons constraining knowledge maps returned   (optional)
 
 try:
@@ -231,12 +231,12 @@ Get a list of predicates used in statements issued by the knowledge source
 ```python
 from __future__ import print_function
 import time
-import openapi_client
-from openapi_client.rest import ApiException
+import kba_client
+from kba_client.rest import ApiException
 from pprint import pprint
 
 # Create an instance of the API class
-api_instance = openapi_client.MetadataApi()
+api_instance = kba_client.MetadataApi()
 beacons = [56] # list[int] | set of aggregator indices of beacons to constrain predicates returned  (optional)
 
 try:

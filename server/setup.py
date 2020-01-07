@@ -3,8 +3,8 @@
 import sys
 from setuptools import setup, find_packages
 
-NAME = "openapi_server"
-VERSION = "1.0.0"
+NAME = "reasoner_server"
+VERSION = "1.1.1"
 
 # To install the library, run the following
 #
@@ -24,14 +24,14 @@ setup(
     version=VERSION,
     description="OpenAPI for NCATS Biomedical Translator Reasoners",
     author_email="edeutsch@systemsbiology.org",
-    url="",
+    url="https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/server",
     keywords=["OpenAPI", "OpenAPI for NCATS Biomedical Translator Reasoners"],
     install_requires=REQUIRES,
     packages=find_packages(),
     package_data={'': ['openapi/openapi.yaml']},
     include_package_data=True,
     entry_points={
-        'console_scripts': ['openapi_server=openapi_server.__main__:main']},
+        'console_scripts': ['reasoner_server=reasoner_server.__main__:main']},
     long_description="""\
     OpenAPI for NCATS Biomedical Translator Reasoners
     """
