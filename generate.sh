@@ -162,11 +162,11 @@ elif [ "$COMMAND" = client ]; then
 	                --package-name=${CLIENT_PACKAGE_NAME} \
 	                --model-package=model \
 	                --artifact-version=${CLIENT_PACKAGE_VERSION} \
-	                --additional-properties="\
---projectName=\""+${PROJECT_NAME}+"\",\
---packageName=\""+${CLIENT_PACKAGE_NAME}+"\",\
-—-packageVersion=\""+${CLIENT_PACKAGE_VERSION}+"\",\
---packageUrl=\""+${CLIENT_PACKAGE_URL}+"\""
+	                --additional-properties=\
+						"projectName="+${PROJECT_NAME}+","+\
+						"packageName="+${CLIENT_PACKAGE_NAME}+","+\
+						"packageVersion="+${CLIENT_PACKAGE_VERSION}+","+\
+						"packageUrl="+${CLIENT_PACKAGE_URL}
 
 	exit 0
 
@@ -180,13 +180,12 @@ elif [ "$COMMAND" = server ]; then
 	                --package-name=${SERVER_PACKAGE_NAME} \
 	                --model-package=model \
 	                --artifact-version=${SERVER_PACKAGE_VERSION} \
-	                --additional-properties="\
---projectName=\""+${PROJECT_NAME}+"\",\
---packageName=\""+${CLIENT_PACKAGE_NAME}+"\",\
-—-packageVersion=\""+${CLIENT_PACKAGE_VERSION}+"\",\
---packageUrl=\""+${SERVER_PACKAGE_URL}+"\",\
---serverPort=\""+${SERVER_PORT}+"\""
-
+	                --additional-properties=\
+						"projectName="+${PROJECT_NAME}+","+\
+						"packageName="+${CLIENT_PACKAGE_NAME}+","+\
+						"packageVersion="+${CLIENT_PACKAGE_VERSION}+","+\
+						"packageUrl="+${SERVER_PACKAGE_URL}+","+\
+						"serverPort="+${SERVER_PORT}
 	exit 0
 
 else
