@@ -163,7 +163,7 @@ elif [ "$COMMAND" = client ]; then
 	                --model-package=model \
 	                --artifact-version=${CLIENT_PACKAGE_VERSION} \
 	                --additional-properties=\
-"projectName=${PROJECT_NAME},packageName=${CLIENT_PACKAGE_NAME},packageVersion=${CLIENT_PACKAGE_VERSION},packageUrl=${CLIENT_PACKAGE_URL}"
+"projectName=${CLIENT_PACKAGE_NAME},packageName=${CLIENT_PACKAGE_NAME},packageVersion=${CLIENT_PACKAGE_VERSION},packageUrl=${CLIENT_PACKAGE_URL}"
 
 	exit 0
 
@@ -178,7 +178,7 @@ elif [ "$COMMAND" = server ]; then
 	                --model-package=model \
 	                --artifact-version=${SERVER_PACKAGE_VERSION} \
 	                --additional-properties=\
-"projectName=${PROJECT_NAME},packageName=${SERVER_PACKAGE_NAME},packageVersion=${SERVER_PACKAGE_VERSION},packageUrl=${SERVER_PACKAGE_URL},serverPort=${SERVER_PORT}"
+"projectName=${SERVER_PACKAGE_NAME},packageName=${SERVER_PACKAGE_NAME},packageVersion=${SERVER_PACKAGE_VERSION},packageUrl=${SERVER_PACKAGE_URL},serverPort=${SERVER_PORT}"
 	exit 0
 
 else
