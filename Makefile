@@ -15,9 +15,6 @@ validation:
 code-generation:
 	./generate.sh server
 	./generate.sh client
-	# Replace the generated __main__ file with our custom __main__ file
-	rm server/reasoner_server/__main__.py
-	cp __main__.py-template server/reasoner_server/__main__.py
 
 build:
 	make download-swagger-ui
