@@ -160,7 +160,7 @@ elif [ "$COMMAND" = client ]; then
 	                --output=${CLIENT_OUTPUT_DIR} \
 	                --generator-name=python \
 	                --package-name=${CLIENT_PACKAGE_NAME} \
-	                --model-package=model \
+	                --model-package=models \
 	                --artifact-version=${CLIENT_PACKAGE_VERSION} \
 	                --additional-properties=\
 "projectName=${CLIENT_PACKAGE_NAME},packageName=${CLIENT_PACKAGE_NAME},packageVersion=${CLIENT_PACKAGE_VERSION},packageUrl=${CLIENT_PACKAGE_URL}"
@@ -175,7 +175,7 @@ elif [ "$COMMAND" = server ]; then
 	                --output=${SERVER_OUTPUT_DIR} \
 	                --generator-name=python-flask \
 	                --package-name=${SERVER_PACKAGE_NAME} \
-	                --model-package=model \
+	                --model-package=models \
 	                --artifact-version=${SERVER_PACKAGE_VERSION} \
 	                --additional-properties=\
 "projectName=${SERVER_PACKAGE_NAME},packageName=${SERVER_PACKAGE_NAME},packageVersion=${SERVER_PACKAGE_VERSION},packageUrl=${SERVER_PACKAGE_URL},serverPort=${SERVER_PORT}"
