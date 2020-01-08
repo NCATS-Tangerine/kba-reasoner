@@ -122,7 +122,7 @@ openapi-generator generate --input-spec=reasoner_api/API/TranslatorReasonersAPI.
                     --output=server \
                     --generator-name=python-flask \
                     --package-name=reasoner_server \
-	                --model-package=model \
+	                --model-package=models \
 	                --artifact-version=0.9.2 \
 	                --additional-properties=\
 "projectName=reasoner_server,packageName=reasoner_server,packageVersion=0.9.2,packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/master/server,serverPort=8080"
@@ -135,7 +135,7 @@ openapi-generator generate  --input-spec=kba_api/beacon-aggregator-api.yaml \
                     --output=client \
                     --generator-name=python \
                     --package-name=kba_client \
-	                --model-package=model \
+	                --model-package=models \
 	                --artifact-version=1.1.1 \
 	                --additional-properties=\
 "projectName=kba_client,packageName=kba_client,packageVersion=1.1.1,packageUrl=https://github.com/NCATS-Tangerine/kba-reasoner/tree/master/client"
