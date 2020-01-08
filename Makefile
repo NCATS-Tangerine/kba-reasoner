@@ -5,7 +5,6 @@ installation:
 	make download-swagger-ui
 	python -m pip install swagger_ui_bundle-0.0.3-py3-none-any.whl
 	python -m pip install -r requirements.txt
-	python -m pip install -e .
 
 run:
 	cd server && python -m reasoner_server
