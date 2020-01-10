@@ -1,10 +1,3 @@
-import connexion
-import six
-
-from reasoner_server.models.message import Message  # noqa: E501
-from reasoner_server import util
-
-
 def query(request_body):  # noqa: E501
     """Query reasoner via one of several inputs
 

@@ -1,9 +1,3 @@
-import connexion
-import six
-
-from reasoner_server import util
-
-
 def predicates_get():  # noqa: E501
     """Get supported relationships by source and target
 

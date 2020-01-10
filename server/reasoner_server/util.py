@@ -1,7 +1,6 @@
 import datetime
 
 import six
-import typing
 from reasoner_server import typing_utils
 
 
