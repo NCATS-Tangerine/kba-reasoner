@@ -56,7 +56,7 @@ There is a `validation` target to check the project OpenAPI specifications, prio
 make validation
 ```
 
-The *validate* target calls a local shell script `generate.sh` in the root directory of the project.  This script 
+The *validation* target calls a local shell script `generate.sh` in the root directory of the project.  This script 
 checks for the presence of the OpenAPI Code Generator binary and attempts to install it if it is not yet installed 
 on the computer. This installation may be problematic on some platforms (e.g. Microsoft Windows) but you can also 
 [manually install the OpenAPI Code Generator](https://openapi-generator.tech/docs/installation). If you do this, 
@@ -80,8 +80,6 @@ Ideally, the aforementioned `make` process should work but, just in case, we pro
 generation procedure here below.
 
 #### The OpenAPI specifications
-
-The KBA Reasoner is an implementation of the 
 
 Refer to the [Python Flask server](./server) implementation of the Reasoner API wrapper of the KBA with 
 a corresponding [Python client](./client).  
@@ -159,7 +157,7 @@ best understand how the code stubs need to be reconnected or how to add new busi
 Also, the *server* and *client* subdirectory _README.md_ file are overwritten by the code generation. 
 These should be restored from the \*-master.\* versions of these files in each directory.
  
-Finally, check if the `server/openapi_server/__main__.py` file has the correct Identifiers server port (8080).
+Finally, check if the `server/reasoner_server/__main__.py` file has the correct Identifiers server port (8080).
 
 For good measure, after such extensive rebuilding of the libraries, the 'pip' environment dependencies should also 
 be updated, as documented for the client and server, prior to re-testing and using the updated software.
