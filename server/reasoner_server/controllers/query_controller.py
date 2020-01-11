@@ -1,3 +1,6 @@
+from .controller_impl import handle_query
+
+
 def query(request_body):  # noqa: E501
     """Query reasoner via one of several inputs
 
@@ -8,4 +11,4 @@ def query(request_body):  # noqa: E501
 
     :rtype: Message
     """
-    return 'do some magic!'
+    return handle_query(request_body)

@@ -1,3 +1,5 @@
+from .controller_impl import  handle_predicates_get
+
 def predicates_get():  # noqa: E501
     """Get supported relationships by source and target
 
@@ -6,4 +8,4 @@ def predicates_get():  # noqa: E501
 
     :rtype: Dict[str, Dict[str, List[str]]]
     """
-    return 'do some magic!'
+    return handle_predicates_get()
